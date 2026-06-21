@@ -1,0 +1,2122 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ملف الإنجاز الإلكتروني - معلم العلوم</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <style>
+    /* ===== RESET & BASE ===== */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; scroll-padding-top: 70px; }
+    body {
+      font-family: 'Cairo', sans-serif;
+      background: #f8fafc;
+      color: #1e293b;
+      line-height: 1.8;
+      overflow-x: hidden;
+    }
+    a { text-decoration: none; color: inherit; }
+    ul { list-style: none; }
+    img { max-width: 100%; display: block; }
+    .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+
+    /* ===== COLORS ===== */
+    :root {
+      --primary: #1a56db;
+      --primary-dark: #0f3b8e;
+      --primary-light: #e8effd;
+      --secondary: #0ea5e9;
+      --accent: #06b6d4;
+      --success: #10b981;
+      --warning: #f59e0b;
+      --danger: #ef4444;
+      --text: #1e293b;
+      --text-light: #64748b;
+      --bg: #f8fafc;
+      --white: #ffffff;
+      --shadow-sm: 0 1px 3px rgba(0,0,0,0.08);
+      --shadow-md: 0 4px 20px rgba(0,0,0,0.1);
+      --shadow-lg: 0 10px 40px rgba(0,0,0,0.12);
+      --radius: 16px;
+      --radius-sm: 10px;
+      --transition: 0.3s ease;
+    }
+
+    /* ===== NAVBAR ===== */
+    .navbar {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 1000;
+      background: rgba(255,255,255,0.95);
+      backdrop-filter: blur(20px);
+      box-shadow: var(--shadow-sm);
+      height: 70px;
+      display: flex;
+      align-items: center;
+      border-bottom: 2px solid transparent;
+      transition: var(--transition);
+    }
+    .navbar.scrolled {
+      border-bottom-color: var(--primary);
+      box-shadow: var(--shadow-md);
+    }
+    .navbar .container {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      width: 100%;
+    }
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 20px;
+      font-weight: 800;
+      color: var(--primary);
+    }
+    .logo i { font-size: 28px; }
+    .logo span { background: linear-gradient(135deg, var(--primary), var(--secondary)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+    .nav-toggle {
+      display: none;
+      background: none;
+      border: none;
+      font-size: 28px;
+      color: var(--primary);
+      cursor: pointer;
+    }
+    .nav-menu {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+    }
+    .nav-menu a {
+      padding: 8px 16px;
+      border-radius: 8px;
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--text);
+      transition: var(--transition);
+      white-space: nowrap;
+    }
+    .nav-menu a:hover,
+    .nav-menu a.active {
+      background: var(--primary-light);
+      color: var(--primary);
+    }
+
+    /* ===== HERO ===== */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: linear-gradient(135deg, #0f172a 0%, #1a56db 50%, #0ea5e9 100%);
+      position: relative;
+      overflow: hidden;
+      padding-top: 70px;
+    }
+    .hero::before {
+      content: '';
+      position: absolute;
+      width: 600px; height: 600px;
+      background: radial-gradient(circle, rgba(255,255,255,0.05) 0%, transparent 70%);
+      top: -200px; left: -200px;
+      border-radius: 50%;
+    }
+    .hero::after {
+      content: '';
+      position: absolute;
+      width: 400px; height: 400px;
+      background: radial-gradient(circle, rgba(14,165,233,0.15) 0%, transparent 70%);
+      bottom: -100px; right: -100px;
+      border-radius: 50%;
+    }
+    .hero-content {
+      text-align: center;
+      color: var(--white);
+      position: relative;
+      z-index: 1;
+      padding: 40px 20px;
+      max-width: 800px;
+    }
+    .hero-content .badge {
+      display: inline-block;
+      background: rgba(255,255,255,0.15);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255,255,255,0.2);
+      padding: 6px 24px;
+      border-radius: 50px;
+      font-size: 14px;
+      font-weight: 500;
+      margin-bottom: 24px;
+    }
+    .hero-content h1 {
+      font-size: 52px;
+      font-weight: 800;
+      margin-bottom: 16px;
+      line-height: 1.3;
+    }
+    .hero-content h1 .highlight {
+      background: linear-gradient(135deg, #38bdf8, #818cf8);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .hero-content p {
+      font-size: 20px;
+      opacity: 0.9;
+      margin-bottom: 32px;
+      line-height: 1.8;
+    }
+    .hero-buttons {
+      display: flex;
+      gap: 16px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 14px 32px;
+      border-radius: 50px;
+      font-size: 16px;
+      font-weight: 600;
+      border: none;
+      cursor: pointer;
+      transition: var(--transition);
+      font-family: 'Cairo', sans-serif;
+    }
+    .btn-primary {
+      background: var(--white);
+      color: var(--primary);
+    }
+    .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 30px rgba(255,255,255,0.3); }
+    .btn-outline {
+      background: transparent;
+      color: var(--white);
+      border: 2px solid rgba(255,255,255,0.3);
+    }
+    .btn-outline:hover { background: rgba(255,255,255,0.1); border-color: var(--white); transform: translateY(-2px); }
+    .btn-accent {
+      background: var(--secondary);
+      color: var(--white);
+    }
+    .btn-accent:hover { background: #0284c7; transform: translateY(-2px); }
+
+    /* ===== SECTION COMMON ===== */
+    .section {
+      padding: 100px 0;
+    }
+    .section-header {
+      text-align: center;
+      margin-bottom: 60px;
+    }
+    .section-header .section-badge {
+      display: inline-block;
+      background: var(--primary-light);
+      color: var(--primary);
+      padding: 4px 20px;
+      border-radius: 50px;
+      font-size: 13px;
+      font-weight: 600;
+      margin-bottom: 12px;
+    }
+    .section-header h2 {
+      font-size: 38px;
+      font-weight: 800;
+      color: var(--text);
+      margin-bottom: 12px;
+    }
+    .section-header p {
+      color: var(--text-light);
+      font-size: 18px;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+    .section-header .divider {
+      width: 60px;
+      height: 4px;
+      background: linear-gradient(135deg, var(--primary), var(--secondary));
+      border-radius: 2px;
+      margin: 16px auto 0;
+    }
+    .section-alt { background: var(--white); }
+    .section-dark {
+      background: linear-gradient(135deg, #0f172a, #1e293b);
+      color: var(--white);
+    }
+    .section-dark .section-header h2 { color: var(--white); }
+    .section-dark .section-header p { color: rgba(255,255,255,0.7); }
+
+    /* ===== VISION MISSION ===== */
+    .vision-mission {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 30px;
+    }
+    .vm-card {
+      background: var(--white);
+      border-radius: var(--radius);
+      padding: 40px;
+      box-shadow: var(--shadow-md);
+      border-top: 4px solid var(--primary);
+      transition: var(--transition);
+    }
+    .vm-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-lg); }
+    .vm-card:last-child { border-top-color: var(--secondary); }
+    .vm-card .icon {
+      width: 60px; height: 60px;
+      border-radius: 16px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 26px;
+      color: var(--white);
+      margin-bottom: 20px;
+    }
+    .vm-card .icon.vm-vision { background: linear-gradient(135deg, var(--primary), #3b82f6); }
+    .vm-card .icon.vm-mission { background: linear-gradient(135deg, var(--secondary), var(--accent)); }
+    .vm-card h3 { font-size: 22px; font-weight: 700; margin-bottom: 12px; }
+    .vm-card p { color: var(--text-light); line-height: 1.9; }
+
+    /* ===== QUICK LINKS ===== */
+    .quick-links {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 20px;
+      margin-top: 40px;
+    }
+    .ql-card {
+      background: var(--white);
+      border-radius: var(--radius-sm);
+      padding: 30px 24px;
+      text-align: center;
+      box-shadow: var(--shadow-sm);
+      transition: var(--transition);
+      cursor: pointer;
+    }
+    .ql-card:hover { transform: translateY(-6px); box-shadow: var(--shadow-lg); }
+    .ql-card .ql-icon {
+      width: 64px; height: 64px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 16px;
+      font-size: 26px;
+      color: var(--white);
+    }
+    .ql-card:nth-child(1) .ql-icon { background: linear-gradient(135deg, #1a56db, #3b82f6); }
+    .ql-card:nth-child(2) .ql-icon { background: linear-gradient(135deg, #059669, #10b981); }
+    .ql-card:nth-child(3) .ql-icon { background: linear-gradient(135deg, #d97706, #f59e0b); }
+    .ql-card:nth-child(4) .ql-icon { background: linear-gradient(135deg, #dc2626, #ef4444); }
+    .ql-card:nth-child(5) .ql-icon { background: linear-gradient(135deg, #7c3aed, #a78bfa); }
+    .ql-card:nth-child(6) .ql-icon { background: linear-gradient(135deg, #0891b2, #06b6d4); }
+    .ql-card:nth-child(7) .ql-icon { background: linear-gradient(135deg, #be185d, #f472b6); }
+    .ql-card h4 { font-size: 16px; font-weight: 700; margin-bottom: 8px; }
+    .ql-card p { font-size: 13px; color: var(--text-light); }
+
+    /* ===== SUB-NAV / TABS ===== */
+    .sub-nav {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      justify-content: center;
+      margin-bottom: 40px;
+    }
+    .sub-nav a {
+      padding: 10px 24px;
+      border-radius: 50px;
+      font-size: 14px;
+      font-weight: 600;
+      background: var(--white);
+      color: var(--text);
+      box-shadow: var(--shadow-sm);
+      border: 2px solid transparent;
+      transition: var(--transition);
+    }
+    .sub-nav a:hover,
+    .sub-nav a.active-sub {
+      border-color: var(--primary);
+      color: var(--primary);
+      background: var(--primary-light);
+    }
+    .sub-page { display: none; width: 100%; box-sizing: border-box; }
+    .sub-page.active { display: block; }
+
+    /* ===== CONTENT CARDS ===== */
+    .content-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 24px;
+    }
+    .content-card {
+      background: var(--white);
+      border-radius: var(--radius);
+      padding: 32px;
+      box-shadow: var(--shadow-sm);
+      border: 1px solid #e2e8f0;
+      transition: var(--transition);
+    }
+    .content-card:hover { box-shadow: var(--shadow-md); border-color: var(--primary); }
+    .cv-container { max-width: 1200px; margin: 0 auto; width: 100%; }
+    .content-card .card-icon {
+      width: 48px; height: 48px;
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 22px;
+      color: var(--white);
+      margin-bottom: 16px;
+    }
+    .content-card .card-icon.c1 { background: linear-gradient(135deg, var(--primary), #3b82f6); }
+    .content-card .card-icon.c2 { background: linear-gradient(135deg, var(--success), #34d399); }
+    .content-card .card-icon.c3 { background: linear-gradient(135deg, var(--warning), #fbbf24); }
+    .content-card .card-icon.c4 { background: linear-gradient(135deg, var(--danger), #f87171); }
+    .content-card .card-icon.c5 { background: linear-gradient(135deg, #7c3aed, #a78bfa); }
+    .content-card .card-icon.c6 { background: linear-gradient(135deg, var(--accent), #22d3ee); }
+    .content-card .card-icon.c7 { background: linear-gradient(135deg, #f43f5e, #fb7185); }
+    .content-card h3 { font-size: 18px; font-weight: 700; margin-bottom: 10px; }
+    .content-card p { color: var(--text-light); font-size: 14px; line-height: 1.8; }
+    .content-card .card-tag {
+      display: inline-block;
+      margin-top: 12px;
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--primary);
+      background: var(--primary-light);
+      padding: 4px 14px;
+      border-radius: 50px;
+    }
+    .card-tag.clickable { cursor: pointer; transition: .2s; }
+    .card-tag.clickable:hover { background: var(--primary); color: var(--white); transform: translateY(-1px); }
+    .year-chips { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 12px; }
+
+    /* Prep Modal */
+    .prep-modal-overlay { position:fixed; inset:0; z-index:9999; background:rgba(0,0,0,0.5); display:flex; align-items:center; justify-content:center; padding:20px; }
+    .prep-modal { background:#fff; border-radius:12px; padding:24px; max-width:600px; width:100%; max-height:80vh; overflow-y:auto; position:relative; direction:rtl; }
+    .prep-close { position:absolute; top:12px; left:12px; background:none; border:none; font-size:22px; cursor:pointer; color:#666; }
+    .prep-close:hover { color:#000; }
+    .prep-semester { margin-bottom:16px; }
+    .prep-semester h4 { font-size:16px; font-weight:700; color:var(--primary); border-bottom:2px solid var(--accent); padding-bottom:6px; margin-bottom:10px; }
+    .prep-unit { margin:8px 0; padding:8px 12px; background:#f9f9f9; border-radius:8px; border-right:3px solid var(--primary); }
+    .prep-unit-name { display:block; font-weight:600; font-size:14px; color:var(--text); margin-bottom:6px; }
+    .prep-file { display:inline-flex; align-items:center; gap:6px; padding:4px 10px; margin:2px 4px 2px 0; background:var(--primary-light); border-radius:6px; font-size:13px; color:var(--primary); text-decoration:none; transition:.2s; }
+    .prep-file:hover { background:var(--primary); color:var(--white); }
+
+    /* ===== FEATURE LIST ===== */
+    .feature-list {
+      display: grid;
+      gap: 16px;
+    }
+    .feature-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 16px;
+      background: var(--white);
+      padding: 20px 24px;
+      border-radius: var(--radius-sm);
+      box-shadow: var(--shadow-sm);
+      border-right: 4px solid var(--primary);
+    }
+    .feature-item .fi-icon {
+      flex-shrink: 0;
+      width: 40px; height: 40px;
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 18px;
+      color: var(--white);
+      background: linear-gradient(135deg, var(--primary), var(--secondary));
+    }
+    .feature-item .fi-text h4 { font-size: 15px; font-weight: 700; }
+    .feature-item .fi-text p { font-size: 13px; color: var(--text-light); }
+
+    /* ===== FILE LIST ===== */
+    .file-list {
+      display: grid;
+      gap: 12px;
+    }
+    .file-item {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      background: var(--white);
+      padding: 16px 20px;
+      border-radius: var(--radius-sm);
+      box-shadow: var(--shadow-sm);
+      transition: var(--transition);
+      border: 1px solid #e2e8f0;
+    }
+    .file-item:hover { border-color: var(--primary); box-shadow: var(--shadow-md); }
+    .file-item .fi-icon {
+      width: 44px; height: 44px;
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 20px;
+      color: var(--white);
+      flex-shrink: 0;
+    }
+    .file-item .fi-icon.pdf { background: #dc2626; }
+    .file-item .fi-icon.docx { background: #2563eb; }
+    .file-item .fi-icon.ppt { background: #ea580c; }
+    .file-item .fi-icon.img { background: #7c3aed; }
+    .file-item .fi-icon.link { background: var(--secondary); }
+    .file-item .fi-info { flex: 1; }
+    .file-item .fi-info h4 { font-size: 14px; font-weight: 700; }
+    .file-item .fi-info span { font-size: 12px; color: var(--text-light); }
+    .file-item .fi-dl {
+      width: 36px; height: 36px;
+      border-radius: 50%;
+      background: var(--primary-light);
+      color: var(--primary);
+      border: none;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: var(--transition);
+    }
+    .file-item .fi-dl:hover { background: var(--primary); color: var(--white); }
+
+    /* ===== STATS ===== */
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 20px;
+      margin-top: 40px;
+    }
+    .stat-card {
+      text-align: center;
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: var(--radius);
+      padding: 30px 20px;
+    }
+    .stat-card .num {
+      font-size: 42px;
+      font-weight: 800;
+      background: linear-gradient(135deg, #38bdf8, #818cf8);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .stat-card p { color: rgba(255,255,255,0.7); font-size: 14px; margin-top: 4px; }
+
+    /* ===== TIMELINE ===== */
+    .timeline {
+      position: relative;
+      padding-right: 40px;
+    }
+    .timeline::before {
+      content: '';
+      position: absolute;
+      right: 15px;
+      top: 0; bottom: 0;
+      width: 3px;
+      background: linear-gradient(to bottom, var(--primary), var(--secondary));
+      border-radius: 2px;
+    }
+    .tl-item {
+      position: relative;
+      margin-bottom: 30px;
+      background: var(--white);
+      padding: 20px 24px;
+      border-radius: var(--radius-sm);
+      box-shadow: var(--shadow-sm);
+      border: 1px solid #e2e8f0;
+    }
+    .tl-item::before {
+      content: '';
+      position: absolute;
+      right: -33px;
+      top: 24px;
+      width: 14px; height: 14px;
+      border-radius: 50%;
+      background: var(--primary);
+      border: 3px solid var(--white);
+      box-shadow: 0 0 0 3px var(--primary-light);
+    }
+    .tl-item .tl-date {
+      font-size: 12px;
+      color: var(--primary);
+      font-weight: 700;
+      background: var(--primary-light);
+      display: inline-block;
+      padding: 2px 14px;
+      border-radius: 50px;
+      margin-bottom: 8px;
+    }
+    .tl-item h4 { font-size: 15px; font-weight: 700; }
+    .tl-item p { font-size: 13px; color: var(--text-light); }
+
+    /* ===== FOOTER ===== */
+    .footer {
+      background: #0f172a;
+      color: rgba(255,255,255,0.6);
+      padding: 40px 0;
+      text-align: center;
+    }
+    .footer .social {
+      display: flex;
+      justify-content: center;
+      gap: 16px;
+      margin-bottom: 20px;
+    }
+    .footer .social a {
+      width: 44px; height: 44px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.08);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 18px;
+      color: rgba(255,255,255,0.6);
+      transition: var(--transition);
+    }
+    .footer .social a:hover { background: var(--primary); color: var(--white); transform: translateY(-3px); }
+    .footer p { font-size: 13px; }
+
+    /* ===== BACK TO TOP ===== */
+    .back-top {
+      position: fixed;
+      bottom: 30px; left: 30px;
+      width: 50px; height: 50px;
+      border-radius: 50%;
+      background: var(--primary);
+      color: var(--white);
+      border: none;
+      font-size: 20px;
+      cursor: pointer;
+      box-shadow: var(--shadow-md);
+      transition: var(--transition);
+      opacity: 0;
+      visibility: hidden;
+      z-index: 999;
+    }
+    .back-top.visible { opacity: 1; visibility: visible; }
+    .back-top:hover { transform: translateY(-4px); }
+
+    /* ===== PLACEHOLDER PAGE ===== */
+    .placeholder-page {
+      text-align: center;
+      padding: 60px 20px;
+    }
+    .placeholder-page i {
+      font-size: 64px;
+      color: var(--primary-light);
+      margin-bottom: 20px;
+    }
+    .placeholder-page h3 { font-size: 24px; font-weight: 700; margin-bottom: 10px; }
+    .placeholder-page p { color: var(--text-light); max-width: 500px; margin: 0 auto; }
+
+    /* ===== RESPONSIVE ===== */
+    @media (max-width: 992px) {
+      .hero-content h1 { font-size: 38px; }
+      .vision-mission { grid-template-columns: 1fr; }
+      .section-header h2 { font-size: 30px; }
+    }
+    @media (max-width: 992px) {
+      .cv-body { grid-template-columns: 1fr !important; }
+      .research-stats { grid-template-columns: repeat(3,1fr) !important; }
+      .courses-grid { grid-template-columns: 1fr !important; }
+    }
+    @media (max-width: 768px) {
+      .nav-toggle { display: block; }
+      .nav-menu {
+        position: fixed;
+        top: 70px; left: 0; right: 0;
+        background: var(--white);
+        flex-direction: column;
+        padding: 20px;
+        box-shadow: var(--shadow-md);
+        gap: 4px;
+        transform: translateY(-100%);
+        opacity: 0;
+        pointer-events: none;
+        transition: var(--transition);
+      }
+      .nav-menu.open {
+        transform: translateY(0);
+        opacity: 1;
+        pointer-events: all;
+      }
+      .nav-menu a { width: 100%; text-align: center; padding: 12px; }
+      .hero-content h1 { font-size: 30px; }
+      .hero-content p { font-size: 16px; }
+      .section { padding: 60px 0; }
+      .section-header h2 { font-size: 26px; }
+      .content-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ===== NAVBAR ===== -->
+  <nav class="navbar" id="navbar">
+    <div class="container">
+      <a href="#home" class="logo"><i class="fas fa-flask"></i><span>ملف الإنجاز</span></a>
+      <button class="nav-toggle" id="navToggle" aria-label="القائمة"><i class="fas fa-bars"></i></button>
+      <div class="nav-menu" id="navMenu">
+        <a href="#home" class="active">الرئيسية</a>
+        <a href="#about">الملف الشخصي</a>
+        <a href="#planning">التخطيط الدراسي</a>
+        <a href="#pedagogy">التدريس والابتكار</a>
+        <a href="#assessment">التقويم والتحليل</a>
+        <a href="#research">البحوث والتأمل</a>
+        <a href="#community">المسؤولية والتقدير</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- ===== HERO / HOME ===== -->
+  <section class="hero" id="home">
+    <div class="hero-content">
+      <div class="badge"><i class="fas fa-graduation-cap"></i> ملف إنجاز إلكتروني</div>
+      <h1>معلم <span class="highlight">علوم</span> ممارس<br>باحث <span class="highlight">ومبتكر</span></h1>
+      <p>أؤمن بأن التعليم ليس مجرد نقل للمعلومات، بل رحلة استكشاف تنمي الفضول العلمي وتبني جيلاً قادراً على التفكير الناقد وحل المشكلات. هذا الملف يجسد مسيرتي المهنية ورحلتي في تطوير تعليم العلوم.</p>
+      <div class="hero-buttons">
+        <a href="#about" class="btn btn-primary"><i class="fas fa-user"></i> تعرف علي</a>
+        <a href="#planning" class="btn btn-outline"><i class="fas fa-book-open"></i> خططي الدراسية</a>
+        <a href="#pedagogy" class="btn btn-outline"><i class="fas fa-robot"></i> ابتكاراتي الرقمية</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== QUICK LINKS SECTION ===== -->
+  <section class="section section-alt" style="padding: 60px 0;">
+    <div class="container">
+      <div class="quick-links">
+        <a href="#about" class="ql-card"><div class="ql-icon"><i class="fas fa-id-card"></i></div><h4>الملف الشخصي</h4><p>السيرة الذاتية، الفلسفة التربوية، الشهادات</p></a>
+        <a href="#planning" class="ql-card"><div class="ql-icon"><i class="fas fa-calendar-alt"></i></div><h4>التخطيط الدراسي</h4><p>الخطط الفصلية، تحضير 5E، المواد التعليمية</p></a>
+        <a href="#pedagogy" class="ql-card"><div class="ql-icon"><i class="fas fa-chalkboard-teacher"></i></div><h4>استراتيجيات التدريس</h4><p>الاستقصاء، الدمج التقني، تطبيقات AI</p></a>
+        <a href="#assessment" class="ql-card"><div class="ql-icon"><i class="fas fa-chart-bar"></i></div><h4>التقويم والتحليل</h4><p>اختبارات، Rubrics، تحليل البيانات</p></a>
+        <a href="#research" class="ql-card"><div class="ql-icon"><i class="fas fa-search"></i></div><h4>البحوث والتأمل</h4><p>بحوث إجرائية، تأملات ذاتية</p></a>
+        <a href="#community" class="ql-card"><div class="ql-icon"><i class="fas fa-handshake"></i></div><h4>المسؤولية المجتمعية</h4><p>أنشطة لامنهجية، شهادات شكر</p></a>
+        <a href="#vision-mission-row" class="ql-card"><div class="ql-icon"><i class="fas fa-eye"></i></div><h4>الرؤية والرسالة</h4><p>فلسفتي التربوية وأهدافي المهنية</p></a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== VISION & MISSION ===== -->
+  <section class="section" id="vision-mission-row">
+    <div class="container">
+      <div class="section-header">
+        <div class="section-badge"><i class="fas fa-bullseye"></i> رؤيتي التربوية</div>
+        <h2>الرؤية والرسالة</h2>
+        <div class="divider"></div>
+      </div>
+      <div class="vision-mission">
+        <div class="vm-card">
+          <div class="icon vm-vision"><i class="fas fa-eye"></i></div>
+          <h3>الرؤية</h3>
+          <p>"الريادة في تقديم تعليم تفاعلي ملهم في علوم الأرض والبيئة؛ يتجاوز حدود التلقين إلى آفاق الابتكار الرقمي، ويحفز الطلبة على استكشاف أسرار كوكبنا بروح المستقصي الشغوف."</p>
+        </div>
+        <div class="vm-card">
+          <div class="icon vm-mission"><i class="fas fa-rocket"></i></div>
+          <h3>الرسالة</h3>
+          <p>"الالتزام بتوفير بيئة تعليمية محفزة تعتمد على الاستقصاء العلمي والدمج التقني التفاعلي، والاستثمار في أدوات الذكاء الاصطناعي لتطوير مهارات التفكير العليا لدى الطلبة، مع تمكينهم من فهم التحديات البيئية والمساهمة في حلها بكفاءة ومسؤولية."</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================== -->
+  <!-- 2. ABOUT ME -->
+  <!-- ============================== -->
+  <section class="section" id="about">
+    <div class="container">
+      <div class="section-header">
+        <div class="section-badge"><i class="fas fa-user-graduate"></i> من أنا</div>
+        <h2>الملف الشخصي والمهني</h2>
+        <p>هويتي المهنية، مسيرتي الأكاديمية، وفلسفتي في التعليم</p>
+        <div class="divider"></div>
+      </div>
+
+      <div class="sub-nav" id="aboutNav">
+        <a href="javascript:void(0)" onclick="switchTab(this)" data-target="about-cv" class="active-sub"><i class="fas fa-file-pdf"></i> السيرة الذاتية</a>
+        <a href="javascript:void(0)" onclick="switchTab(this)" data-target="about-philosophy"><i class="fas fa-book"></i> الفلسفة التربوية</a>
+        <a href="javascript:void(0)" onclick="switchTab(this)" data-target="about-cert"><i class="fas fa-certificate"></i> الشهادات والتنمية</a>
+      </div>
+
+      <!-- Personal Profile -->
+      <!-- CV -->
+      <div class="sub-page active" id="about-cv">
+        <!-- Print / Save as PDF -->
+        <div style="text-align:left;margin-bottom:20px;">
+          <button class="btn btn-primary" onclick="printCV();"><i class="fas fa-print"></i> طباعة السيرة الذاتية / حفظ PDF</button>
+        </div>
+
+        <div class="cv-container" style="background:var(--white);border-radius:var(--radius);box-shadow:var(--shadow-lg);overflow:hidden;border:1px solid #e2e8f0;">
+          <!-- ===== CV HEADER ===== -->
+          <div style="background:linear-gradient(135deg,#0f172a 0%,#1a56db 50%,#0ea5e9 100%);padding:40px 32px;color:var(--white);display:flex;align-items:center;gap:24px;flex-wrap:wrap;">
+            <div style="width:100px;height:100px;border-radius:50%;background:rgba(255,255,255,0.15);border:3px solid rgba(255,255,255,0.3);display:flex;align-items:center;justify-content:center;font-size:44px;flex-shrink:0;"><i class="fas fa-user-graduate"></i></div>
+            <div style="flex:1;">
+              <h1 style="font-size:32px;font-weight:800;margin:0;line-height:1.3;">محمد رعد وجيه أحمد يونس</h1>
+              <p style="font-size:18px;opacity:0.9;margin:4px 0 8px;font-weight:500;">Mohammad Ra'ad Wajih Ahmad Younes</p>
+              <div style="display:flex;gap:12px;flex-wrap:wrap;font-size:13px;opacity:0.8;">
+                <span><i class="fas fa-chalkboard-teacher"></i> معلم علوم الأرض والبيئة — المسار المتخصص</span>
+                <span><i class="fas fa-id-badge"></i> الرقم الوزاري: 187091</span>
+              </div>
+            </div>
+            <div style="text-align:center;background:rgba(255,255,255,0.1);padding:16px 24px;border-radius:12px;backdrop-filter:blur(10px);">
+              <div style="font-size:36px;font-weight:800;line-height:1;">+10</div>
+              <div style="font-size:12px;opacity:0.8;">سنوات خبرة</div>
+            </div>
+          </div>
+
+          <!-- ===== CV BODY ===== -->
+          <div class="cv-body" style="display:grid;grid-template-columns:1fr 2fr;gap:0;">
+            <!-- RIGHT SIDEBAR -->
+            <div style="background:#f1f5f9;padding:28px;border-left:1px solid #e2e8f0;">
+
+              <!-- Personal Info -->
+              <div style="margin-bottom:28px;">
+                <h3 style="font-size:15px;font-weight:800;color:var(--primary);margin-bottom:12px;display:flex;align-items:center;gap:8px;"><i class="fas fa-info-circle"></i> معلومات شخصية</h3>
+                <div style="display:grid;gap:8px;font-size:13px;">
+                  <div><span style="font-weight:700;color:var(--text);">المؤهل العلمي:</span><br><span style="color:var(--text-light);">بكالوريوس علوم الأرض والبيئة</span></div>
+                  <div><span style="font-weight:700;color:var(--text);">الدبلوم المهني:</span><br><span style="color:var(--text-light);">التربية — قيد الإنجاز</span></div>
+                  <div><span style="font-weight:700;color:var(--text);">الخبرة التدريسية:</span><br><span style="color:var(--text-light);">+10 سنوات</span></div>
+                </div>
+              </div>
+
+              <!-- Skills -->
+              <div style="margin-bottom:28px;">
+                <h3 style="font-size:15px;font-weight:800;color:var(--primary);margin-bottom:12px;display:flex;align-items:center;gap:8px;"><i class="fas fa-lightbulb"></i> مهارات تدريسية</h3>
+                <div style="display:flex;flex-wrap:wrap;gap:6px;">
+                  <span style="background:var(--white);padding:4px 14px;border-radius:50px;font-size:12px;font-weight:600;border:1px solid #e2e8f0;">استقصاء موجه</span>
+                  <span style="background:var(--white);padding:4px 14px;border-radius:50px;font-size:12px;font-weight:600;border:1px solid #e2e8f0;">تعلم نشط</span>
+                  <span style="background:var(--white);padding:4px 14px;border-radius:50px;font-size:12px;font-weight:600;border:1px solid #e2e8f0;">SEL</span>
+                  <span style="background:var(--white);padding:4px 14px;border-radius:50px;font-size:12px;font-weight:600;border:1px solid #e2e8f0;">تعلم مدمج</span>
+                  <span style="background:var(--white);padding:4px 14px;border-radius:50px;font-size:12px;font-weight:600;border:1px solid #e2e8f0;">صف معكوس</span>
+                  <span style="background:var(--white);padding:4px 14px;border-radius:50px;font-size:12px;font-weight:600;border:1px solid #e2e8f0;">تصحيح متنوع</span>
+                  <span style="background:var(--white);padding:4px 14px;border-radius:50px;font-size:12px;font-weight:600;border:1px solid #e2e8f0;">تعليم دامج</span>
+                  <span style="background:var(--white);padding:4px 14px;border-radius:50px;font-size:12px;font-weight:600;border:1px solid #e2e8f0;">STEM</span>
+                  <span style="background:var(--white);padding:4px 14px;border-radius:50px;font-size:12px;font-weight:600;border:1px solid #e2e8f0;">بحث تربوي</span>
+                  <span style="background:var(--white);padding:4px 14px;border-radius:50px;font-size:12px;font-weight:600;border:1px solid #e2e8f0;">تأمل مهني</span>
+                </div>
+              </div>
+
+              <!-- Tech Skills -->
+              <div style="margin-bottom:28px;">
+                <h3 style="font-size:15px;font-weight:800;color:var(--primary);margin-bottom:12px;display:flex;align-items:center;gap:8px;"><i class="fas fa-laptop-code"></i> مهارات تقنية</h3>
+                <div style="display:flex;flex-wrap:wrap;gap:6px;">
+                  <span style="background:var(--white);padding:4px 14px;border-radius:50px;font-size:12px;font-weight:600;border:1px solid #e2e8f0;">HTML/CSS/JS</span>
+                  <span style="background:var(--white);padding:4px 14px;border-radius:50px;font-size:12px;font-weight:600;border:1px solid #e2e8f0;">NotebookLM</span>
+                  <span style="background:var(--white);padding:4px 14px;border-radius:50px;font-size:12px;font-weight:600;border:1px solid #e2e8f0;">Windy.com</span>
+                  <span style="background:var(--white);padding:4px 14px;border-radius:50px;font-size:12px;font-weight:600;border:1px solid #e2e8f0;">Padlet</span>
+                  <span style="background:var(--white);padding:4px 14px;border-radius:50px;font-size:12px;font-weight:600;border:1px solid #e2e8f0;">PowerPoint</span>
+                  <span style="background:var(--white);padding:4px 14px;border-radius:50px;font-size:12px;font-weight:600;border:1px solid #e2e8f0;">Excel VBA</span>
+                  <span style="background:var(--white);padding:4px 14px;border-radius:50px;font-size:12px;font-weight:600;border:1px solid #e2e8f0;">ICDL</span>
+                  <span style="background:var(--white);padding:4px 14px;border-radius:50px;font-size:12px;font-weight:600;border:1px solid #e2e8f0;">Office 365</span>
+                  <span style="background:var(--white);padding:4px 14px;border-radius:50px;font-size:12px;font-weight:600;border:1px solid #e2e8f0;">هندسة أوامر</span>
+                  <span style="background:var(--white);padding:4px 14px;border-radius:50px;font-size:12px;font-weight:600;border:1px solid #e2e8f0;">ذكاء اصطناعي</span>
+                </div>
+              </div>
+
+              <!-- Languages -->
+              <div style="margin-bottom:28px;">
+                <h3 style="font-size:15px;font-weight:800;color:var(--primary);margin-bottom:12px;display:flex;align-items:center;gap:8px;"><i class="fas fa-globe"></i> اللغات</h3>
+                <div style="display:grid;gap:6px;font-size:13px;">
+                  <div style="display:flex;justify-content:space-between;"><span style="font-weight:600;">العربية</span><span style="color:var(--text-light);">لغة أم</span></div>
+                  <div style="display:flex;justify-content:space-between;"><span style="font-weight:600;">الإنجليزية</span><span style="color:var(--text-light);">مستوى مهني</span></div>
+                </div>
+              </div>
+
+              <!-- Certifications -->
+              <div style="margin-bottom:28px;">
+                <h3 style="font-size:15px;font-weight:800;color:var(--primary);margin-bottom:12px;display:flex;align-items:center;gap:8px;"><i class="fas fa-certificate"></i> الشهادات</h3>
+                <div style="display:grid;gap:8px;font-size:13px;">
+                  <div style="background:var(--white);padding:10px 14px;border-radius:8px;border-right:3px solid var(--primary);">
+                    <div style="font-weight:700;">المعلم الرئيس</div>
+                    <div style="color:var(--text-light);font-size:12px;">وزارة التربية الأردنية</div>
+                  </div>
+                  <div style="background:var(--white);padding:10px 14px;border-radius:8px;border-right:3px solid var(--secondary);">
+                    <div style="font-weight:700;">أكاديمية الملكة رانيا</div>
+                    <div style="color:var(--text-light);font-size:12px;">8 دورات</div>
+                  </div>
+                  <div style="background:var(--white);padding:10px 14px;border-radius:8px;border-right:3px solid var(--success);">
+                    <div style="font-weight:700;">منصة إدراك</div>
+                    <div style="color:var(--text-light);font-size:12px;">20 دورة</div>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+
+            <!-- LEFT MAIN CONTENT -->
+            <div style="padding:28px;">
+
+              <!-- Professional Summary -->
+              <div style="margin-bottom:28px;">
+                <h3 style="font-size:16px;font-weight:800;color:var(--primary);margin-bottom:10px;display:flex;align-items:center;gap:8px;"><i class="fas fa-quote-right"></i> لمحة مهنية</h3>
+                <p style="font-size:14px;color:var(--text-light);line-height:1.9;background:#f8fafc;padding:16px 20px;border-radius:12px;border-right:4px solid var(--primary);">
+                  معلم علوم الأرض والبيئة ملتزم بالتطوير المهني المستمر، أسعى إلى تحويل التعليم من نمط التلقين إلى التعلم النشط القائم على الاستقصاء والتكامل التكنولوجي. أؤمن بأن المعلم الفاعل هو باحث ومتأمل وميسر للتعلم، وأن البيئة التعليمية الآمنة والداعمة هي الأساس لتحقيق تعلم عميق وهادف.
+                </p>
+              </div>
+
+              <!-- Experience -->
+              <div style="margin-bottom:28px;">
+                <h3 style="font-size:16px;font-weight:800;color:var(--primary);margin-bottom:14px;display:flex;align-items:center;gap:8px;"><i class="fas fa-briefcase"></i> الخبرات العملية</h3>
+                <div style="display:grid;gap:14px;">
+                  <div style="background:#f8fafc;padding:16px 20px;border-radius:12px;border-right:4px solid var(--primary);">
+                    <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;margin-bottom:6px;">
+                      <h4 style="font-size:14px;font-weight:700;">معلم علوم عامة وعلوم أرض وبيئة تطبيقية</h4>
+                      <span style="font-size:11px;color:var(--text-light);background:var(--white);padding:2px 12px;border-radius:50px;">2013 - حتى الآن</span>
+                    </div>
+                    <p style="font-size:12px;color:var(--text-light);margin-bottom:8px;">مدارس وزارة التربية والتعليم — الأردن</p>
+                    <ul style="font-size:13px;color:var(--text-light);padding-right:16px;list-style:disc;">
+                      <li>تدريس العلوم العامة وعلوم الأرض والبيئة للصفوف الأساسية والثانوية</li>
+                      <li>توظيف استراتيجيات التعلم النشط كالاستقصاء الموجه</li>
+                      <li>دمج أدوات الذكاء الاصطناعي والتكنولوجيا في التعليم</li>
+                      <li>تصميم أدوات تقويم متنوعة (اختبارات، قوائم رصد، سلالم تقدير)</li>
+                      <li>بناء بيئة تعلم آمنة وداعمة للطلبة</li>
+                      <li>تطوير مهارات إدارة الصف وبناء العلاقات الإيجابية</li>
+                    </ul>
+                  </div>
+                  <div style="font-size:12px;display:flex;flex-wrap:wrap;gap:8px;margin-right:8px;">
+                    <span style="background:#e8effd;color:var(--primary);padding:4px 14px;border-radius:50px;font-weight:600;"><i class="fas fa-school"></i> مدرسة ملكا الأساسية للبنين (2013)</span>
+                    <span style="background:#e8effd;color:var(--primary);padding:4px 14px;border-radius:50px;font-weight:600;"><i class="fas fa-school"></i> مدرسة عمر بن عبد العزيز الأساسية للبنين</span>
+                    <span style="background:#e8effd;color:var(--primary);padding:4px 14px;border-radius:50px;font-weight:600;"><i class="fas fa-school"></i> مدرسة الحسن بن الهيثم الثانوية للبنين — حتى الآن</span>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Initiatives -->
+              <div style="margin-bottom:28px;">
+                <h3 style="font-size:16px;font-weight:800;color:var(--primary);margin-bottom:14px;display:flex;align-items:center;gap:8px;"><i class="fas fa-rocket"></i> المبادرات التربوية</h3>
+                <div style="background:linear-gradient(135deg,#e8effd,#dbeafe);padding:16px 20px;border-radius:12px;border-right:4px solid var(--secondary);">
+                  <h4 style="font-size:14px;font-weight:700;margin-bottom:4px;">توظيف Google NotebookLM في تعلم علوم الأرض والبيئة</h4>
+                  <p style="font-size:12px;color:var(--text-light);margin-bottom:6px;">مبادرة لاستخدام الذكاء الاصطناعي لتمكين التعلم الذاتي والتلخيص الذكي للمحتوى</p>
+                  <ul style="font-size:13px;color:var(--text-light);padding-right:16px;list-style:disc;">
+                    <li>تدريب طلبة الصف العاشر على استخدام الأداة لتحويل المحتوى لملخصات ومقاطع صوتية</li>
+                    <li>ارتفاع ملحوظ في دافعية الطلبة وتحسن في استخراج الأفكار الرئيسة من النصوص</li>
+                  </ul>
+                </div>
+              </div>
+
+              <!-- Research -->
+              <div style="margin-bottom:28px;">
+                <h3 style="font-size:16px;font-weight:800;color:var(--primary);margin-bottom:14px;display:flex;align-items:center;gap:8px;"><i class="fas fa-search"></i> البحث التربوي</h3>
+                <div style="background:#f8fafc;padding:16px 20px;border-radius:12px;border-right:4px solid var(--accent);">
+                  <h4 style="font-size:14px;font-weight:700;margin-bottom:4px;">فاعلية استراتيجية الاستقصاء الموجه في اكتساب مفهوم المياه العادمة</h4>
+                  <p style="font-size:12px;color:var(--text-light);margin-bottom:6px;">دراسة شبه تجريبية — الصف العاشر — مبحث علوم الأرض والبيئة</p>
+                  <div class="research-stats" style="display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:10px;">
+                    <div style="background:var(--white);padding:10px;border-radius:8px;text-align:center;">
+                      <div style="font-size:20px;font-weight:800;color:var(--primary);">84.8%</div>
+                      <div style="font-size:11px;color:var(--text-light);">متوسط إتقان</div>
+                    </div>
+                    <div style="background:var(--white);padding:10px;border-radius:8px;text-align:center;">
+                      <div style="font-size:20px;font-weight:800;color:var(--secondary);">20</div>
+                      <div style="font-size:11px;color:var(--text-light);">عينة طلاب</div>
+                    </div>
+                    <div style="background:var(--white);padding:10px;border-radius:8px;text-align:center;">
+                      <div style="font-size:20px;font-weight:800;color:var(--success);">p &lt; 0.01</div>
+                      <div style="font-size:11px;color:var(--text-light);">دلالة إحصائية</div>
+                    </div>
+                  </div>
+                  <ul style="font-size:13px;color:var(--text-light);padding-right:16px;list-style:disc;margin-top:8px;">
+                    <li>عينة من 20 طالباً على مدى 3 حصص وفق دورة الاستقصاء (تساؤل، استكشاف، تفسير، مشاركة، تقويم)</li>
+                    <li>17-18 طالباً متقناً من 20 عبر 4 أدوات تقويم</li>
+                    <li>حجم أثر كبير d = 0.985</li>
+                  </ul>
+                </div>
+              </div>
+
+              <!-- Courses -->
+              <div>
+                <h3 style="font-size:16px;font-weight:800;color:var(--primary);margin-bottom:14px;display:flex;align-items:center;gap:8px;"><i class="fas fa-certificate"></i> الدورات التدريبية</h3>
+                <div class="courses-grid" style="display:grid;grid-template-columns:1fr 1fr;gap:6px;font-size:13px;">
+                  <div style="display:flex;align-items:center;gap:8px;padding:6px 0;"><i class="fas fa-check-circle" style="color:var(--success);font-size:12px;"></i> الثقافة الرقمية</div>
+                  <div style="display:flex;align-items:center;gap:8px;padding:6px 0;"><i class="fas fa-check-circle" style="color:var(--success);font-size:12px;"></i> STEM في التعليم</div>
+                  <div style="display:flex;align-items:center;gap:8px;padding:6px 0;"><i class="fas fa-check-circle" style="color:var(--success);font-size:12px;"></i> الذكاء الاصطناعي في التعليم</div>
+                  <div style="display:flex;align-items:center;gap:8px;padding:6px 0;"><i class="fas fa-check-circle" style="color:var(--success);font-size:12px;"></i> هندسة الأوامر في التعليم</div>
+                  <div style="display:flex;align-items:center;gap:8px;padding:6px 0;"><i class="fas fa-check-circle" style="color:var(--success);font-size:12px;"></i> وسائل التواصل — لنعلم بطريقتهم</div>
+                  <div style="display:flex;align-items:center;gap:8px;padding:6px 0;"><i class="fas fa-check-circle" style="color:var(--success);font-size:12px;"></i> التفكير التصميمي لتعلّم فعّال</div>
+                  <div style="display:flex;align-items:center;gap:8px;padding:6px 0;"><i class="fas fa-check-circle" style="color:var(--success);font-size:12px;"></i> فن إدارة البيئة التعليمية</div>
+                  <div style="display:flex;align-items:center;gap:8px;padding:6px 0;"><i class="fas fa-check-circle" style="color:var(--success);font-size:12px;"></i> أساسيات التعليم الدامج</div>
+                  <div style="display:flex;align-items:center;gap:8px;padding:6px 0;"><i class="fas fa-check-circle" style="color:var(--success);font-size:12px;"></i> ICDL Base</div>
+                  <div style="display:flex;align-items:center;gap:8px;padding:6px 0;"><i class="fas fa-check-circle" style="color:var(--success);font-size:12px;"></i> استراتيجية الصف المعكوس</div>
+                  <div style="display:flex;align-items:center;gap:8px;padding:6px 0;"><i class="fas fa-check-circle" style="color:var(--success);font-size:12px;"></i> التعلم المدمج</div>
+                  <div style="display:flex;align-items:center;gap:8px;padding:6px 0;"><i class="fas fa-check-circle" style="color:var(--success);font-size:12px;"></i> تحليل البيانات باستخدام Excel</div>
+                  <div style="display:flex;align-items:center;gap:8px;padding:6px 0;"><i class="fas fa-check-circle" style="color:var(--success);font-size:12px;"></i> مهارات متقدمة في Excel</div>
+                  <div style="display:flex;align-items:center;gap:8px;padding:6px 0;"><i class="fas fa-check-circle" style="color:var(--success);font-size:12px;"></i> Excel Dashboard</div>
+                  <div style="display:flex;align-items:center;gap:8px;padding:6px 0;"><i class="fas fa-check-circle" style="color:var(--success);font-size:12px;"></i> البرمجة باستخدام Excel VBA</div>
+                  <div style="display:flex;align-items:center;gap:8px;padding:6px 0;"><i class="fas fa-check-circle" style="color:var(--success);font-size:12px;"></i> Office 365</div>
+                  <div style="display:flex;align-items:center;gap:8px;padding:6px 0;"><i class="fas fa-check-circle" style="color:var(--success);font-size:12px;"></i> أساسيات الحاسوب والإنترنت</div>
+                  <div style="display:flex;align-items:center;gap:8px;padding:6px 0;"><i class="fas fa-check-circle" style="color:var(--success);font-size:12px;"></i> التدريس عبر الإنترنت</div>
+                  <div style="display:flex;align-items:center;gap:8px;padding:6px 0;"><i class="fas fa-check-circle" style="color:var(--success);font-size:12px;"></i> الإسعافات الأولية</div>
+                  <div style="display:flex;align-items:center;gap:8px;padding:6px 0;"><i class="fas fa-check-circle" style="color:var(--success);font-size:12px;"></i> السيرة الذاتية الناجحة</div>
+                </div>
+                </div>
+                </div>
+              </div>
+
+          <!-- ===== CV FOOTER ===== -->
+          <div style="background:#0f172a;color:rgba(255,255,255,0.5);padding:16px 28px;text-align:center;font-size:12px;">
+            <i class="fas fa-flask"></i> محمد رعد وجيه أحمد يونس — معلم علوم الأرض والبيئة — آخر تحديث 2026
+          </div>
+        </div>
+      </div>
+
+      <!-- Philosophy -->
+      <div class="sub-page" id="about-philosophy">
+        <div class="cv-container" style="background:var(--white);border-radius:var(--radius);box-shadow:var(--shadow-lg);overflow:hidden;border:1px solid #e2e8f0;">
+          <div style="padding:40px;">
+            <div style="display:flex;align-items:center;gap:16px;margin-bottom:24px;">
+              <div class="card-icon c2" style="flex-shrink:0;width:56px;height:56px;border-radius:14px;display:flex;align-items:center;justify-content:center;font-size:26px;color:var(--white);background:linear-gradient(135deg,var(--primary),var(--secondary));"><i class="fas fa-gem"></i></div>
+              <h3 style="font-size:22px;font-weight:800;color:var(--text);margin:0;">فلسفتي التربوية</h3>
+            </div>
+            <p style="font-size:15px;color:var(--text-light);line-height:2;margin-bottom:32px;background:#f8fafc;padding:20px 24px;border-radius:12px;border-right:4px solid var(--primary);">
+              أؤمن بأن تعليم العلوم يجب أن يكون تجربة تفاعلية تضع المتعلم في قلب العملية التعليمية. الفلسفة التي أقوم عليها تقوم على:
+            </p>
+
+            <div style="display:grid;gap:12px;">
+              <div style="display:flex;align-items:flex-start;gap:16px;background:#f8fafc;padding:16px 20px;border-radius:12px;border-right:4px solid var(--primary);">
+                <div style="width:36px;height:36px;border-radius:8px;display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:16px;color:var(--white);background:linear-gradient(135deg,var(--primary),var(--secondary));"><i class="fas fa-flask"></i></div>
+                <div><h4 style="font-size:15px;font-weight:700;color:var(--text);margin:0 0 4px;">التعلم بالاستقصاء</h4><p style="font-size:13px;color:var(--text-light);margin:0;line-height:1.7;">الطالب هو الباحث والعالم الصغير الذي يكتشف المعرفة بنفسه من خلال التجارب والاستفسارات.</p></div>
+              </div>
+              <div style="display:flex;align-items:flex-start;gap:16px;background:#f8fafc;padding:16px 20px;border-radius:12px;border-right:4px solid var(--secondary);">
+                <div style="width:36px;height:36px;border-radius:8px;display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:16px;color:var(--white);background:linear-gradient(135deg,var(--secondary),#8b5cf6);"><i class="fas fa-brain"></i></div>
+                <div><h4 style="font-size:15px;font-weight:700;color:var(--text);margin:0 0 4px;">التفكير الناقد</h4><p style="font-size:13px;color:var(--text-light);margin:0;line-height:1.7;">تنمية مهارات التحليل والاستدلال والتقييم لدى الطلاب ليصبحوا مفكرين مستقلين.</p></div>
+              </div>
+              <div style="display:flex;align-items:flex-start;gap:16px;background:#f8fafc;padding:16px 20px;border-radius:12px;border-right:4px solid var(--color-4);">
+                <div style="width:36px;height:36px;border-radius:8px;display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:16px;color:var(--white);background:linear-gradient(135deg,var(--color-4),#f59e0b);"><i class="fas fa-laptop-code"></i></div>
+                <div><h4 style="font-size:15px;font-weight:700;color:var(--text);margin:0 0 4px;">الدمج التقني</h4><p style="font-size:13px;color:var(--text-light);margin:0;line-height:1.7;">توظيف التكنولوجيا والذكاء الاصطناعي كأدوات لتعزيز التعلم وليس كبديل عن المعلم.</p></div>
+              </div>
+              <div style="display:flex;align-items:flex-start;gap:16px;background:#f8fafc;padding:16px 20px;border-radius:12px;border-right:4px solid var(--success);">
+                <div style="width:36px;height:36px;border-radius:8px;display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:16px;color:var(--white);background:linear-gradient(135deg,var(--success),#10b981);"><i class="fas fa-users"></i></div>
+                <div><h4 style="font-size:15px;font-weight:700;color:var(--text);margin:0 0 4px;">التعلم التعاوني</h4><p style="font-size:13px;color:var(--text-light);margin:0;line-height:1.7;">بناء المعرفة من خلال التفاعل الاجتماعي والعمل الجماعي وحل المشكلات المشتركة.</p></div>
+              </div>
+              <div style="display:flex;align-items:flex-start;gap:16px;background:#f8fafc;padding:16px 20px;border-radius:12px;border-right:4px solid #ec4899;">
+                <div style="width:36px;height:36px;border-radius:8px;display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:16px;color:var(--white);background:linear-gradient(135deg,#ec4899,#f472b6);"><i class="fas fa-heart"></i></div>
+                <div><h4 style="font-size:15px;font-weight:700;color:var(--text);margin:0 0 4px;">التعلم المتمركز حول الطالب</h4><p style="font-size:13px;color:var(--text-light);margin:0;line-height:1.7;">مراعاة الفروق الفردية وأنماط التعلم المختلفة لكل طالب.</p></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Certificates -->
+      <div class="sub-page" id="about-cert">
+        <div class="cv-container" style="background:var(--white);border-radius:var(--radius);box-shadow:var(--shadow-lg);overflow:hidden;border:1px solid #e2e8f0;">
+          <div style="padding:40px;">
+            <h3 style="font-size:22px;font-weight:800;color:var(--text);margin:0 0 24px;display:flex;align-items:center;gap:12px;"><i class="fas fa-certificate" style="color:var(--primary);"></i> الشهادات العلمية والمهنية</h3>
+            <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:20px;">
+              <div style="background:#f8fafc;border-radius:12px;padding:24px;border:1px solid #e2e8f0;text-align:center;cursor:default;">
+                <div style="width:56px;height:56px;border-radius:14px;display:flex;align-items:center;justify-content:center;margin:0 auto 16px;font-size:26px;color:var(--white);background:linear-gradient(135deg,#f59e0b,#f97316);"><i class="fas fa-university"></i></div>
+                <h4 style="font-size:17px;font-weight:700;color:var(--text);margin:0 0 8px;">شهادة البكالوريوس</h4>
+                <p style="font-size:13px;color:var(--text-light);margin:0 0 8px;line-height:1.7;">بكالوريوس في علوم الأرض والبيئة التطبيقية</p>
+                <div style="font-size:12px;color:var(--primary);font-weight:600;margin-bottom:16px;"><i class="fas fa-calendar"></i> 2013</div>
+                <button data-file-key="cert-bachelor" onclick="return openFile(this);" style="background:var(--primary);color:var(--white);border:none;padding:8px 20px;border-radius:50px;font-size:13px;font-weight:600;cursor:pointer;font-family:inherit;"><i class="fas fa-eye"></i> شاهد الملف</button>
+              </div>
+              <div style="background:#f8fafc;border-radius:12px;padding:24px;border:1px solid #e2e8f0;text-align:center;cursor:default;">
+                <div style="width:56px;height:56px;border-radius:14px;display:flex;align-items:center;justify-content:center;margin:0 auto 16px;font-size:26px;color:var(--white);background:linear-gradient(135deg,var(--primary),var(--secondary));"><i class="fas fa-chalkboard"></i></div>
+                <h4 style="font-size:17px;font-weight:700;color:var(--text);margin:0 0 8px;">دورات وزارة التربية</h4>
+                <p style="font-size:13px;color:var(--text-light);margin:0 0 8px;line-height:1.7;">دورة إعداد المعلمين الجدد • دورة المعلم الرئيس • دورة قيادة المدرسة التطويرية</p>
+                <div style="font-size:12px;color:var(--secondary);font-weight:600;margin-bottom:16px;">3 دورات</div>
+                <button data-file-key="cert-ministry" onclick="return openFile(this);" style="background:var(--primary);color:var(--white);border:none;padding:8px 20px;border-radius:50px;font-size:13px;font-weight:600;cursor:pointer;font-family:inherit;"><i class="fas fa-eye"></i> شاهد الملف</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================== -->
+  <!-- 3. INSTRUCTIONAL PLANNING -->
+  <!-- ============================== -->
+  <section class="section" id="planning">
+    <div class="container">
+      <div class="section-header">
+        <div class="section-badge"><i class="fas fa-calendar-alt"></i> التخطيط</div>
+        <h2>التخطيط والمنهاج الدراسي</h2>
+        <p>التخطيط وفق نموذج الـ 5E والتعلم القائم على الاستقصاء</p>
+        <div class="divider"></div>
+      </div>
+
+      <div class="sub-nav" id="planningNav">
+        <a href="javascript:void(0)" onclick="switchTab(this)" data-target="plan-plans" class="active-sub"><i class="fas fa-file-excel"></i> الخطط الفصلية والسنوية</a>
+        <a href="javascript:void(0)" onclick="switchTab(this)" data-target="plan-5e"><i class="fas fa-layer-group"></i> نماذج التحضير (5E)</a>
+        <a href="javascript:void(0)" onclick="switchTab(this)" data-target="plan-materials"><i class="fas fa-folder-open"></i> المواد التعليمية والإثرائية</a>
+      </div>
+
+      <!-- Semester/Annual Plans -->
+      <div class="sub-page active" id="plan-plans">
+        <p style="text-align:center;color:var(--text-light);margin-bottom:24px;">توزيع المناهج لجميع الصفوف التي أدرسها - خطط سنوية وفصلية شاملة</p>
+        <div class="content-grid">
+          <div class="content-card">
+            <div class="card-icon c1"><i class="fas fa-file-pdf"></i></div>
+            <h3>الصف التاسع</h3>
+            <div class="year-chips">
+              <span class="card-tag clickable" data-file-key="plan-9" onclick="return openFile(this);">2025-2026</span>
+              <span class="card-tag clickable" data-file-key="plan-9-2026" onclick="return openFile(this);">2026-2027</span>
+              <span class="card-tag clickable" data-file-key="plan-9-2027" onclick="return openFile(this);">2027-2028</span>
+            </div>
+          </div>
+          <div class="content-card">
+            <div class="card-icon c2"><i class="fas fa-file-pdf"></i></div>
+            <h3>الصف العاشر</h3>
+            <div class="year-chips">
+              <span class="card-tag clickable" data-file-key="plan-10" onclick="return openFile(this);">2025-2026</span>
+            </div>
+          </div>
+          <div class="content-card">
+            <div class="card-icon c3"><i class="fas fa-file-pdf"></i></div>
+            <h3>الأول ثانوي</h3>
+            <div class="year-chips">
+              <span class="card-tag clickable" data-file-key="plan-11" onclick="return openFile(this);">2025-2026</span>
+            </div>
+          </div>
+          <div class="content-card">
+            <div class="card-icon c4"><i class="fas fa-file-pdf"></i></div>
+            <h3>الثاني ثانوي</h3>
+            <div class="year-chips">
+              <span class="card-tag clickable" data-file-key="plan-12" onclick="return openFile(this);">2025-2026</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 5E Models -->
+      <div class="sub-page" id="plan-5e">
+        <p style="text-align:center;color:var(--text-light);margin-bottom:24px;">نماذج تحضير يومي مطبقة وفق دورة التعلم الخماسية (5E)</p>
+        <div class="content-grid">
+          <div class="content-card">
+            <div class="card-icon c1"><i class="fas fa-chalkboard-teacher"></i></div>
+            <h3>الصف التاسع</h3>
+            <div class="year-chips">
+              <span class="card-tag clickable" onclick="showPrepModal('prep-9-2025');">2025-2026</span>
+              <span class="card-tag clickable" onclick="showPrepModal('prep-9-2026');">2026-2027</span>
+            </div>
+          </div>
+          <div class="content-card">
+            <div class="card-icon c2"><i class="fas fa-chalkboard-teacher"></i></div>
+            <h3>الصف العاشر</h3>
+            <div class="year-chips">
+              <span class="card-tag clickable" onclick="showPrepModal('prep-10-2025');">2025-2026</span>
+            </div>
+          </div>
+          <div class="content-card">
+            <div class="card-icon c3"><i class="fas fa-chalkboard-teacher"></i></div>
+            <h3>الأول ثانوي</h3>
+            <div class="year-chips">
+              <span class="card-tag clickable" onclick="showPrepModal('prep-11-2025');">2025-2026</span>
+            </div>
+          </div>
+          <div class="content-card">
+            <div class="card-icon c4"><i class="fas fa-chalkboard-teacher"></i></div>
+            <h3>الثاني ثانوي</h3>
+            <div class="year-chips">
+              <span class="card-tag clickable" onclick="showPrepModal('prep-12-2025');">2025-2026</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Materials -->
+      <div class="sub-page" id="plan-materials">
+        <p style="text-align:center;color:var(--text-light);margin-bottom:24px;">المواد التعليمية والإثرائية - أوراق عمل، ملخصات، عروض تقديمية</p>
+        <div class="content-grid">
+          <div class="content-card">
+            <div class="card-icon c6"><i class="fas fa-file-alt"></i></div>
+            <h3>أوراق عمل تفاعلية</h3>
+            <p>مجموعة أوراق عمل مصممة وفق استراتيجيات التعلم النشط لجميع الصفوف.</p>
+            <div style="margin-top:12px;"><span class="card-tag clickable" onclick="showMaterialsModal('materials-worksheets');">شاهد الملف</span></div>
+          </div>
+          <div class="content-card">
+            <div class="card-icon c1"><i class="fas fa-layer-group"></i></div>
+            <h3>ملخصات شاملة</h3>
+            <p>ملخصات وخرائط مفاهيمية للمنهاج تسهل المراجعة والتثبيت.</p>
+            <div style="margin-top:12px;"><span class="card-tag clickable" onclick="showMaterialsModal('materials-summaries');">شاهد الملف</span></div>
+          </div>
+          <div class="content-card">
+            <div class="card-icon c2"><i class="fas fa-file-powerpoint"></i></div>
+            <h3>عروض بوربوينت</h3>
+            <p>عروض تقديمية تفاعلية مزودة بصور وفيديوهات تعليمية.</p>
+            <div style="margin-top:12px;"><span class="card-tag clickable" onclick="showMaterialsModal('materials-pptx');">شاهد الملف</span></div>
+          </div>
+          <div class="content-card">
+            <div class="card-icon c3"><i class="fas fa-video"></i></div>
+            <h3>فيديوهات تعليمية</h3>
+            <p>مقاطع فيديو من إعدادي لشرح المفاهيم العلمية الأساسية.</p>
+            <div style="margin-top:12px;"><span class="card-tag clickable" onclick="showMaterialsModal('materials-videos');">شاهد الملف</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================== -->
+  <!-- 4. PEDAGOGY & TECH -->
+  <!-- ============================== -->
+  <section class="section section-alt" id="pedagogy">
+    <div class="container">
+      <div class="section-header">
+        <div class="section-badge"><i class="fas fa-robot"></i> الابتكار الرقمي</div>
+        <h2>استراتيجيات التدريس والابتكار الرقمي</h2>
+        <p>التحول الرقمي والاستقصاء في حصص العلوم</p>
+        <div class="divider"></div>
+      </div>
+
+      <div class="sub-nav" id="pedagogyNav">
+        <a href="javascript:void(0)" onclick="switchTab(this)" data-target="ped-inquiry" class="active-sub"><i class="fas fa-chalkboard-teacher"></i> استراتيجيات التدريس المستخدمة</a>
+        <a href="javascript:void(0)" onclick="switchTab(this)" data-target="ped-tech"><i class="fas fa-microchip"></i> الابتكار الرقمي</a>
+      </div>
+
+      <!-- Strategies -->
+      <div class="sub-page active" id="ped-inquiry">
+        <div class="content-grid">
+          <div class="content-card" style="grid-column:1/-1;">
+            <div class="card-icon c1"><i class="fas fa-flask"></i></div>
+            <h3>استراتيجيات التدريس المستخدمة</h3>
+            <p>مجموعة من الاستراتيجيات التدريسية المطبقة في حصص العلوم، تشمل التعلم بالاستقصاء، والتعلم التعاوني، والعصف الذهني، وحل المشكلات، وغيرها من الاستراتيجيات النشطة.</p>
+          </div>
+        </div>
+        <div class="feature-list">
+          <div class="feature-item">
+            <div class="fi-icon"><i class="fas fa-vial"></i></div>
+            <div class="fi-text"><h4>التعلم بالاستقصاء</h4><p>إجراء تجارب عملية مصممة لتطوير مهارات الاستقصاء والتحليل العلمي لدى الطلاب.</p></div>
+          </div>
+          <div class="feature-item">
+            <div class="fi-icon"><i class="fas fa-users"></i></div>
+            <div class="fi-text"><h4>التعلم التعاوني</h4><p>تنظيم الطلاب في مجموعات عمل لحل المشكلات وتبادل المعرفة.</p></div>
+          </div>
+          <div class="feature-item">
+            <div class="fi-icon"><i class="fas fa-brain"></i></div>
+            <div class="fi-text"><h4>العصف الذهني وحل المشكلات</h4><p>تحفيز التفكير الإبداعي والناقد من خلال أسئلة مفتوحة وتحديات علمية.</p></div>
+          </div>
+        </div>
+        <div style="text-align:center;margin-top:24px;">
+          <span class="card-tag clickable" onclick="showSimpleFolderModal('strategy-teaching');" style="font-size:14px;padding:8px 24px;">شاهد الملفات</span>
+        </div>
+      </div>
+
+      <!-- Digital Innovation -->
+      <div class="sub-page" id="ped-tech">
+        <div class="content-grid">
+          <div class="content-card" style="grid-column:1/-1;">
+            <div class="card-icon c2"><i class="fas fa-microchip"></i></div>
+            <h3>الابتكار الرقمي</h3>
+            <p>توظيف التكنولوجيا والذكاء الاصطناعي لتعزيز تجربة التعلم وجعلها أكثر تفاعلية وتخصيصاً.</p>
+          </div>
+        </div>
+        <div class="content-grid">
+          <div class="content-card">
+            <div class="card-icon c3"><i class="fas fa-chart-line"></i></div>
+            <h3>أنظمة إدارة بيانات الطلاب</h3>
+            <p>مجموعة من الأنظمة الرقمية المتكاملة: سجل متابعة الطلبة الرقمي، دفتر الحضور والغياب الرقمي، وأدوات تحليل باستخدام Excel و Google Sheets.</p>
+            <div class="card-tag">أنظمة متكاملة</div>
+            <div style="margin-top:12px;"><span class="card-tag clickable" onclick="showSubProject('strategy-digital','sub-data')" style="font-size:13px;">شاهد الملفات</span></div>
+          </div>
+          <div class="content-card">
+            <div class="card-icon c4"><i class="fas fa-flask"></i></div>
+            <h3>حوسبة سجلات المختبر</h3>
+            <p>نظام رقمي لحوسبة سجلات المختبر المدرسي يشمل توثيق التجارب، إدارة المواد، ومتابعة صيانة الأجهزة.</p>
+            <div class="card-tag">نظام رقمي</div>
+            <div style="margin-top:12px;"><span class="card-tag clickable" data-file-key="lab-images" onclick="return openFile(this);" style="font-size:13px;">شاهد الصور</span></div>
+          </div>
+          <div class="content-card">
+            <div class="card-icon c5"><i class="fas fa-robot"></i></div>
+            <h3>تطبيقات الذكاء الاصطناعي</h3>
+            <p>توظيف أدوات AI مثل ChatGPT في تصميم أسئلة تقويمية، خطط دراسية، وأنشطة تعليمية مخصصة.</p>
+            <div class="card-tag">AI في التعليم</div>
+          </div>
+          <div class="content-card">
+            <div class="card-icon c6"><i class="fas fa-vr-cardboard"></i></div>
+            <h3>المحاكاة والواقع المعزز</h3>
+            <p>استخدام منصات المحاكاة العلمية (PhET) والواقع المعزز لشرح المفاهيم المجردة.</p>
+            <div class="card-tag">محاكاة</div>
+          </div>
+          <div class="content-card">
+            <div class="card-icon c7"><i class="fas fa-poll"></i></div>
+            <h3>التقويم الرقمي التفاعلي</h3>
+            <p>تصميم اختبارات إلكترونية باستخدام Google Forms و Quizizz مع تغذية راجعة فورية.</p>
+            <div class="card-tag">تقويم رقمي</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================== -->
+  <!-- 5. ASSESSMENT & DATA -->
+  <!-- ============================== -->
+  <section class="section" id="assessment">
+    <div class="container">
+      <div class="section-header">
+        <div class="section-badge"><i class="fas fa-chart-pie"></i> التقويم</div>
+        <h2>منظومة التقويم والتحليل</h2>
+        <p>فلسفة التقويم المتوازن وجداول المواصفات</p>
+        <div class="divider"></div>
+      </div>
+
+      <div class="sub-nav" id="assessmentNav">
+        <a href="javascript:void(0)" onclick="switchTab(this)" data-target="assess-tests" class="active-sub"><i class="fas fa-file-signature"></i> نماذج الاختبارات وأدوات التقويم</a>
+        <a href="javascript:void(0)" onclick="switchTab(this)" data-target="assess-data"><i class="fas fa-table"></i> تحليل البيانات والخطط العلاجية</a>
+      </div>
+
+      <!-- Tests & Rubrics -->
+      <div class="sub-page active" id="assess-tests">
+        <div class="content-grid">
+          <div class="content-card">
+            <div class="card-icon c1"><i class="fas fa-scroll"></i></div>
+            <h3>اختبارات وفق مستويات بلوم</h3>
+            <p>تصميم اختبارات تراعي مستويات بلوم المعرفية (تذكر، فهم، تطبيق، تحليل، تركيب، تقويم) مع جداول مواصفات مرفقة.</p>
+            <div style="margin-top:12px;"><span class="card-tag clickable" onclick="showAssessModal('assess-bloom')" style="font-size:13px;">شاهد الملفات</span></div>
+          </div>
+          <div class="content-card">
+            <div class="card-icon c2"><i class="fas fa-star"></i></div>
+            <h3>سلالم التقدير اللفظية (Rubrics)</h3>
+            <p>Rubrics متعددة الأبعاد لتقييم الأداءات العملية والمشاريع والعروض التقديمية.</p>
+            <div style="margin-top:12px;"><span class="card-tag clickable" onclick="showAssessModal('assess-rubrics')" style="font-size:13px;">شاهد الملفات</span></div>
+          </div>
+          <div class="content-card">
+            <div class="card-icon c3"><i class="fas fa-check-double"></i></div>
+            <h3>قوائم الشطب (Checklists)</h3>
+            <p>قوائم شطب لتقييم المهارات العملية والمخبرية بشكل موضوعي.</p>
+            <div style="margin-top:12px;"><span class="card-tag clickable" onclick="showAssessModal('assess-checklist')" style="font-size:13px;">شاهد الملفات</span></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Data Analysis -->
+      <div class="sub-page" id="assess-data">
+        <div class="content-grid">
+          <div class="content-card" style="grid-column:1/-1;">
+            <div class="card-icon c4"><i class="fas fa-table"></i></div>
+            <h3>تحليل البيانات الإحصائية</h3>
+            <p>جداول تحليل إحصائي لنتائج الطلاب تشمل: المتوسط، الانحراف المعياري، معامل التمييز، معامل الصعوبة، وتحليل الفقرات.</p>
+          </div>
+        </div>
+        <div class="content-grid" style="margin-top:20px;">
+          <div class="content-card">
+            <div class="card-icon c1"><i class="fas fa-calculator"></i></div>
+            <h3>تحليل نتائج الاختبارات</h3>
+            <p>جداول إحصائية شاملة تحلل أداء الطلاب في كل اختبار وتحدد نقاط القوة والضعف.</p>
+            <div style="margin-top:12px;"><span class="card-tag clickable" onclick="showAssessModal('data-analysis')" style="font-size:13px;">شاهد الملفات</span></div>
+          </div>
+          <div class="content-card">
+            <div class="card-icon c2"><i class="fas fa-bullseye"></i></div>
+            <h3>الخطط العلاجية</h3>
+            <p>خطط علاجية مبنية على نتائج التحليل الإحصائي لمعالجة نقاط الضعف وتعزيز نقاط القوة.</p>
+            <div style="margin-top:12px;"><span class="card-tag clickable" onclick="showAssessModal('data-remedial')" style="font-size:13px;">شاهد الملفات</span></div>
+          </div>
+          <div class="content-card">
+            <div class="card-icon c3"><i class="fas fa-chart-bar"></i></div>
+            <h3>تقارير الأداء</h3>
+            <p>تقارير دورية ترسم بيانياً تقدم الطلاب على مدار الفصل الدراسي.</p>
+            <div style="margin-top:12px;"><span class="card-tag clickable" onclick="showAssessModal('data-reports')" style="font-size:13px;">شاهد الملفات</span></div>
+          </div>
+          <div class="content-card">
+            <div class="card-icon c4"><i class="fas fa-file-medical-alt"></i></div>
+            <h3>خطط المتابعة الفردية</h3>
+            <p>برامج تقوية فردية للطلاب ذوي التحصيل المتدني مع متابعة أسبوعية.</p>
+            <div style="margin-top:12px;"><span class="card-tag clickable" onclick="showAssessModal('data-individual')" style="font-size:13px;">شاهد الملفات</span></div>
+          </div>
+        </div>
+        <!-- Sample chart placeholder -->
+        <div style="background:var(--white);border-radius:var(--radius);padding:32px;margin-top:24px;text-align:center;border:2px dashed #e2e8f0;">
+          <i class="fas fa-chart-bar" style="font-size:48px;color:var(--primary-light);margin-bottom:12px;"></i>
+          <p style="color:var(--text-light);">هنا سيتم عرض رسم بياني لتحليل نتائج الطلاب (مخطط تفاعلي)</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================== -->
+  <!-- 6. RESEARCH & REFLECTION -->
+  <!-- ============================== -->
+  <section class="section section-alt" id="research">
+    <div class="container">
+      <div class="section-header">
+        <div class="section-badge"><i class="fas fa-search"></i> بحث وتأمل</div>
+        <h2>البحوث الإجرائية والتأمل الذاتي</h2>
+        <p>المعلم كممارس متأمل وباحث</p>
+        <div class="divider"></div>
+      </div>
+
+      <div class="sub-nav" id="researchNav">
+        <a href="javascript:void(0)" onclick="switchTab(this)" data-target="res-actions" class="active-sub"><i class="fas fa-book-open"></i> البحوث التربوية الإجرائية</a>
+        <a href="javascript:void(0)" onclick="switchTab(this)" data-target="res-reflect"><i class="fas fa-feather-alt"></i> سجل التأملات الذاتية</a>
+      </div>
+
+      <!-- Action Research -->
+      <div class="sub-page active" id="res-actions">
+        <div class="content-grid">
+          <div class="content-card" style="grid-column:1/-1;">
+            <div class="card-icon c1"><i class="fas fa-book-open"></i></div>
+            <h3>البحث الاستقصائي</h3>
+            <p>ما فاعلية توظيف استراتيجية الاستقصاء الموجه في اكتساب مفهوم المياه العادمة في درس الآثار السلبية للمياه العادمة في مبحث علوم الأرض والبيئة لدى طلاب الصف العاشر؟</p>
+            <p style="color:var(--text-light);font-size:14px;margin-top:8px;">هذا بحث إجرائي يهدف إلى قياس أثر استخدام استراتيجية الاستقصاء الموجه في تنمية المفاهيم العلمية لدى طلاب الصف العاشر في مبحث علوم الأرض والبيئة، من خلال تطبيق أنشطة استقصائية منظمة حول مفهوم المياه العادمة والآثار السلبية المرتبطة بها.</p>
+            <div style="margin-top:12px;"><span class="card-tag clickable" data-file-key="research-1" onclick="return openFile(this);" style="font-size:13px;">شاهد الملف</span></div>
+          </div>
+        </div>
+        <div class="content-grid" style="margin-top:20px;">
+          <div class="content-card">
+            <div class="card-icon c2"><i class="fas fa-sitemap"></i></div>
+            <h3>مخطط البحث الاستقصائي</h3>
+            <p>الخطة المنهجية وخطوات البحث الاستقصائي.</p>
+            <div style="margin-top:12px;"><span class="card-tag clickable" data-file-key="res-plan-imgs" onclick="return openFile(this);" style="font-size:13px;">شاهد الصور</span></div>
+          </div>
+          <div class="content-card">
+            <div class="card-icon c3"><i class="fas fa-file-powerpoint"></i></div>
+            <h3>العرض التقديمي والبوستر</h3>
+            <p>العرض التقديمي وملصق البحث العلمي.</p>
+            <div style="margin-top:12px;"><span class="card-tag clickable" data-file-key="res-presentation-imgs" onclick="return openFile(this);" style="font-size:13px;">شاهد الصور</span></div>
+          </div>
+          <div class="content-card">
+            <div class="card-icon c4"><i class="fas fa-clipboard-check"></i></div>
+            <h3>تطبيق البحث الاستقصائي</h3>
+            <p>نتائج التطبيق والأدوات المستخدمة.</p>
+            <div style="margin-top:12px;"><span class="card-tag clickable" data-file-key="res-apply-imgs" onclick="return openFile(this);" style="font-size:13px;">شاهد الصور</span></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Reflection -->
+      <div class="sub-page" id="res-reflect">
+        <div class="content-card" style="margin-bottom:24px;">
+          <div class="card-icon c2"><i class="fas fa-feather-alt"></i></div>
+          <h3>سجل التأملات الذاتية</h3>
+          <p>مدونات دورية أسجل فيها تأملاتي حول أدائي الصفي، التحديات التي واجهتها، والاستراتيجيات التي طورتها.</p>
+        </div>
+        <div class="timeline" style="opacity:0.5;font-style:italic;">
+          <div class="tl-item">
+            <div class="tl-date">مارس 2026 <span style="font-size:11px;color:#999;">(لحين التوفر)</span></div>
+            <h4>تأمل: تحدي الفروق الفردية</h4>
+            <p>لاحظت تبايناً كبيراً في مستويات الطلاب خلال حصة التصنيف الكيميائي. قمت بتصميم أنشطة متمايزة ومواد دعم إضافية، وكانت النتائج إيجابية. سأستمر في تطبيق التمايز بشكل منظم.</p>
+            <div style="margin-top:8px;"><span class="card-tag clickable" data-file-key="refl-diff" onclick="return openFile(this);" style="font-size:11px;">شاهد الملفات</span></div>
+          </div>
+          <div class="tl-item">
+            <div class="tl-date">يناير 2026 <span style="font-size:11px;color:#999;">(لحين التوفر)</span></div>
+            <h4>تأمل: دمج التكنولوجيا</h4>
+            <p>طبقت استخدام منصة Nearpod في شرح الجهاز العصبي. لاحظت تفاعلاً غير مسبوق من الطلاب. التحول الرقمي ليس ترفاً بل ضرورة لجذب انتباه الجيل الرقمي.</p>
+            <div style="margin-top:8px;"><span class="card-tag clickable" data-file-key="refl-tech" onclick="return openFile(this);" style="font-size:11px;">شاهد الملفات</span></div>
+          </div>
+          <div class="tl-item">
+            <div class="tl-date">نوفمبر 2025 <span style="font-size:11px;color:#999;">(لحين التوفر)</span></div>
+            <h4>تأمل: إدارة الصف</h4>
+            <p>واجهت صعوبة في إدارة وقت الحصة المختبرية. قمت بإعادة تصميم الإجراءات وتوزيع الأدوار على المجموعات. تحسن الوقت المستغل والانضباط بشكل ملحوظ.</p>
+            <div style="margin-top:8px;"><span class="card-tag clickable" data-file-key="refl-class" onclick="return openFile(this);" style="font-size:11px;">شاهد الملفات</span></div>
+          </div>
+          <div class="tl-item">
+            <div class="tl-date">سبتمبر 2025 <span style="font-size:11px;color:#999;">(لحين التوفر)</span></div>
+            <h4>تأمل: بداية العام</h4>
+            <p>مع بداية العام الدراسي الجديد، أركز على بناء علاقات إيجابية مع الطلاب. لاحظت أن الاهتمام بالجانب العاطفي والترحيب الحار يسهل عملية التعلم.</p>
+            <div style="margin-top:8px;"><span class="card-tag clickable" data-file-key="refl-start" onclick="return openFile(this);" style="font-size:11px;">شاهد الملفات</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================== -->
+  <!-- 7. COMMUNITY & AWARDS -->
+  <!-- ============================== -->
+  <section class="section" id="community">
+    <div class="container">
+      <div class="section-header">
+        <div class="section-badge"><i class="fas fa-award"></i> تقدير</div>
+        <h2>المسؤولية المجتمعية والتقدير</h2>
+        <p>دوري في المجتمع المدرسي وشهادات التقدير</p>
+        <div class="divider"></div>
+      </div>
+
+      <div class="sub-nav" id="communityNav">
+        <a href="javascript:void(0)" onclick="switchTab(this)" data-target="comm-activities" class="active-sub"><i class="fas fa-hands-helping"></i> النشاطات والمبادرات اللامنهجية</a>
+        <a href="javascript:void(0)" onclick="switchTab(this)" data-target="comm-awards"><i class="fas fa-medal"></i> شهادات الشكر والثناء</a>
+      </div>
+
+      <!-- Activities -->
+      <div class="sub-page active" id="comm-activities">
+        <div class="content-grid" style="opacity:0.5;font-style:italic;">
+          <div class="content-card">
+            <div class="card-icon c1"><i class="fas fa-flask"></i></div>
+            <h3>المعرض العلمي السنوي</h3>
+            <p>الإشراف على تنظيم المعرض العلمي المدرسي وتحكيم مشاريع الطلاب البحثية.</p>
+            <div class="card-tag">لحين التوفر</div>
+            <div style="margin-top:8px;"><span class="card-tag clickable" data-file-key="comm-fair" onclick="return openFile(this);" style="font-size:11px;">شاهد الملفات</span></div>
+          </div>
+          <div class="content-card">
+            <div class="card-icon c2"><i class="fas fa-leaf"></i></div>
+            <h3>نادي العلوم</h3>
+            <p>تأسيس وإدارة نادي العلوم المدرسي حيث ينفذ الطلاب تجارب متقدمة ومشاريع ابتكارية.</p>
+            <div class="card-tag">لحين التوفر</div>
+            <div style="margin-top:8px;"><span class="card-tag clickable" data-file-key="comm-club" onclick="return openFile(this);" style="font-size:11px;">شاهد الملفات</span></div>
+          </div>
+          <div class="content-card">
+            <div class="card-icon c3"><i class="fas fa-chalkboard-teacher"></i></div>
+            <h3>ورش تطوير الزملاء</h3>
+            <p>تقديم ورش تدريبية للمعلمين حول استراتيجيات التعلم النشط وتطبيقات الذكاء الاصطناعي.</p>
+            <div class="card-tag">لحين التوفر</div>
+            <div style="margin-top:8px;"><span class="card-tag clickable" data-file-key="comm-workshops" onclick="return openFile(this);" style="font-size:11px;">شاهد الملفات</span></div>
+          </div>
+          <div class="content-card">
+            <div class="card-icon c4"><i class="fas fa-recycle"></i></div>
+            <h3>مبادرة التدوير البيئي</h3>
+            <p>إطلاق مبادرة مدرسية لإعادة التدوير والتوعية البيئية بالتعاون مع طلاب النادي العلمي.</p>
+            <div class="card-tag">لحين التوفر</div>
+            <div style="margin-top:8px;"><span class="card-tag clickable" data-file-key="comm-recycling" onclick="return openFile(this);" style="font-size:11px;">شاهد الملفات</span></div>
+          </div>
+          <div class="content-card">
+            <div class="card-icon c5"><i class="fas fa-trophy"></i></div>
+            <h3>مسابقات العلوم</h3>
+            <p>تدريب فريق المدرسة للمشاركة في مسابقات العلوم المحلية والإقليمية.</p>
+            <div class="card-tag">لحين التوفر</div>
+            <div style="margin-top:8px;"><span class="card-tag clickable" data-file-key="comm-contests" onclick="return openFile(this);" style="font-size:11px;">شاهد الملفات</span></div>
+          </div>
+          <div class="content-card">
+            <div class="card-icon c6"><i class="fas fa-hand-holding-heart"></i></div>
+            <h3>التوعية الصحية</h3>
+            <p>تنظيم حملات توعوية حول الصحة العامة والنظافة والتغذية السليمة بالتعاون مع المؤسسات الصحية.</p>
+            <div class="card-tag">لحين التوفر</div>
+            <div style="margin-top:8px;"><span class="card-tag clickable" data-file-key="comm-health" onclick="return openFile(this);" style="font-size:11px;">شاهد الملفات</span></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Awards -->
+      <div class="sub-page" id="comm-awards">
+        <p style="text-align:center;color:var(--text-light);margin-bottom:24px;">شهادات الشكر والتقدير من الإدارة، المشرفين، والمجتمع المحلي</p>
+        <div class="content-grid">
+          <div class="content-card">
+            <div class="card-icon c2"><i class="fas fa-user-tie"></i></div>
+            <h3>شكر وتقدير من مدير المدرسة</h3>
+            <div style="margin-top:12px;"><span class="card-tag clickable" data-file-key="award-1" onclick="return openFile(this);">شاهد الملفات</span></div>
+          </div>
+          <div class="content-card">
+            <div class="card-icon c3"><i class="fas fa-chalkboard-teacher"></i></div>
+            <h3>خطاب شكر من المشرف التربوي</h3>
+            <div style="margin-top:12px;"><span class="card-tag clickable" data-file-key="award-2" onclick="return openFile(this);">شاهد الملفات</span></div>
+          </div>
+          <div class="content-card">
+            <div class="card-icon c4"><i class="fas fa-chalkboard"></i></div>
+            <h3>شهادة تقدير لتقديم ورشة تدريبية</h3>
+            <div style="margin-top:12px;"><span class="card-tag clickable" data-file-key="award-3" onclick="return openFile(this);">شاهد الملفات</span></div>
+          </div>
+          <div class="content-card">
+            <div class="card-icon c5"><i class="fas fa-award"></i></div>
+            <h3>درع تكريم من جمعية المجتمع المحلي</h3>
+            <div style="margin-top:12px;"><span class="card-tag clickable" data-file-key="award-4" onclick="return openFile(this);">شاهد الملفات</span></div>
+          </div>
+          <div class="content-card">
+            <div class="card-icon c6"><i class="fas fa-university"></i></div>
+            <h3>شهادة شكر وتقدير</h3>
+            <p style="font-size:14px;color:var(--text-light);">كلية العلوم التربوية - الجامعة الهاشمية</p>
+            <div style="margin-top:12px;"><span class="card-tag clickable" data-file-key="award-5" onclick="return openFile(this);">شاهد الملفات</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== STATS SECTION ===== -->
+  <section class="section section-dark">
+    <div class="container">
+      <div class="section-header">
+        <div class="section-badge" style="background:rgba(255,255,255,0.1);color:var(--white);">إحصائيات</div>
+        <h2>مسيرتي بالأرقام</h2>
+        <div class="divider"></div>
+      </div>
+      <div class="stats-grid">
+        <div class="stat-card"><div class="num">10+</div><p>سنوات خبرة</p></div>
+        <div class="stat-card"><div class="num">4</div><p>مستويات صفية</p></div>
+        <div class="stat-card"><div class="num">500+</div><p>طالب سنوياً</p></div>
+        <div class="stat-card"><div class="num">1</div><p>بحث إجرائي</p></div>
+        <div class="stat-card"><div class="num">3</div><p>دورات تدريبية</p></div>
+        <div class="stat-card"><div class="num">...</div><p>جوائز وتكريمات</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== FOOTER ===== -->
+  <footer class="footer">
+    <div class="container">
+      <div class="social">
+        <a href="#" data-file-key="social-email" onclick="return openFile(this);"><i class="fas fa-envelope"></i></a>
+        <a href="#" data-file-key="social-linkedin" onclick="return openFile(this);"><i class="fab fa-linkedin-in"></i></a>
+        <a href="#" data-file-key="social-twitter" onclick="return openFile(this);"><i class="fab fa-x-twitter"></i></a>
+        <a href="#" data-file-key="social-youtube" onclick="return openFile(this);"><i class="fab fa-youtube"></i></a>
+        <a href="#" data-file-key="social-telegram" onclick="return openFile(this);"><i class="fab fa-telegram-plane"></i></a>
+      </div>
+      <p>جميع الحقوق محفوظة &copy; 2026 | ملف الإنجاز الإلكتروني لمعلم العلوم</p>
+      <p style="font-size:12px;margin-top:8px;">مبني بـ ❤️ للتميز في التعليم</p>
+    </div>
+  </footer>
+
+  <!-- ===== BACK TO TOP ===== -->
+  <button class="back-top" id="backTop" onclick="window.scrollTo({top:0,behavior:'smooth'});"><i class="fas fa-arrow-up"></i></button>
+
+  <!-- ===== LIGHTBOX MODAL ===== -->
+  <div id="lightbox" onclick="closeLightbox();" style="display:none;position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(0,0,0,0.85);z-index:9999;justify-content:center;align-items:center;cursor:pointer;backdrop-filter:blur(8px);">
+    <button onclick="event.stopPropagation();closeLightbox();" style="position:absolute;top:20px;left:20px;background:rgba(255,255,255,0.15);color:#fff;border:none;width:50px;height:50px;border-radius:50%;font-size:28px;cursor:pointer;z-index:10;transition:0.2s;" onmouseover="this.style.background='rgba(255,255,255,0.3)'" onmouseout="this.style.background='rgba(255,255,255,0.15)'">&times;</button>
+    <!-- Navigation counter -->
+    <div id="lightboxNav" style="display:none;position:absolute;bottom:30px;left:50%;transform:translateX(-50%);background:rgba(0,0,0,0.5);color:#fff;padding:8px 20px;border-radius:50px;font-size:14px;font-weight:600;z-index:10;align-items:center;gap:16px;backdrop-filter:blur(10px);">
+      <button class="lb-prev" onclick="event.stopPropagation();prevImage();" style="background:none;border:none;color:#fff;font-size:20px;cursor:pointer;padding:0 8px;">&#9654;</button>
+      <span class="lb-counter">1 / 1</span>
+      <button class="lb-next" onclick="event.stopPropagation();nextImage();" style="background:none;border:none;color:#fff;font-size:20px;cursor:pointer;padding:0 8px;">&#9664;</button>
+    </div>
+    <div onclick="event.stopPropagation();" style="max-width:90vw;max-height:90vh;display:flex;justify-content:center;align-items:center;">
+      <img id="lightboxImg" src="" alt="" style="max-width:100%;max-height:90vh;border-radius:8px;box-shadow:0 20px 60px rgba(0,0,0,0.5);">
+      <iframe id="lightboxIframe" src="" style="display:none;width:90vw;height:90vh;border:none;border-radius:8px;"></iframe>
+    </div>
+  </div>
+
+  <!-- ===== JAVASCRIPT ===== -->
+  <script>
+    // ===== LOCAL FILE OPENER =====
+    // Map file keys to local paths inside the files/ directory
+    const filePaths = {
+      'cv-pdf': 'files/01-السيرة-الذاتية/السيرة-الذاتية.pdf',
+      'cv-download': 'files/01-السيرة-الذاتية/السيرة-الذاتية.pdf',
+      'cert-bachelor': { folder: 'files/01-السيرة-الذاتية/01-شهادة البكالوريوس', files: ['شهادة الجامعة.jpeg'] },
+      'cert-ministry': { folder: 'files/01-السيرة-الذاتية/02-دورات وزارة التربية', files: ['شهادة برنامج بناء بيئة تعلم داعمة وشاملة في المدارس الحكومية.jpeg', 'شهادة.jpeg'] },
+      'plan-8': '',
+      'plan-9': 'files/02-الخطط-السنوية/01-الصف-التاسع/2025-2026.pdf',
+      'plan-9-2026': 'files/02-الخطط-السنوية/01-الصف-التاسع/2026-2027.pdf',
+      'plan-9-2027': 'files/02-الخطط-السنوية/01-الصف-التاسع/2027-2028.pdf',
+      'plan-10': 'files/02-الخطط-السنوية/02-الصف-العاشر/2025-2026.pdf',
+      'plan-11': 'files/02-الخطط-السنوية/03-الأول-ثانوي/2025-2026.pdf',
+      'plan-12': 'files/02-الخطط-السنوية/04-الثاني-ثانوي/2025-2026.pdf',
+      'research-1': 'files/03-البحوث-الإجرائية/187091_Inquiry Report .pdf',
+      'res-plan-imgs': { folder: 'files/03-البحوث-الإجرائية/01-مخطط-البحث-الاستقصائي', files: ['0d20d254-e2d9-4962-bac7-db2ae3cb50b4-0.jpg', '0d20d254-e2d9-4962-bac7-db2ae3cb50b4-1.jpg', '0d20d254-e2d9-4962-bac7-db2ae3cb50b4-2.jpg', '0d20d254-e2d9-4962-bac7-db2ae3cb50b4-3.jpg', '0d20d254-e2d9-4962-bac7-db2ae3cb50b4-4.jpg', '0d20d254-e2d9-4962-bac7-db2ae3cb50b4-5.jpg'] },
+      'res-presentation-imgs': { folder: 'files/03-البحوث-الإجرائية/02-العرض-التقديمي-والبوستر', files: ['42deb522-52a1-4de4-8b8c-114881c9108f-poster.jpeg', 'Slide1.PNG', 'Slide2.PNG', 'Slide3.PNG', 'Slide4.PNG', 'Slide5.PNG', 'Slide6.PNG', 'Slide7.PNG', 'Slide8.PNG', 'Slide9.PNG', 'Slide10.PNG', 'Slide11.PNG', 'Slide12.PNG', 'Slide13.PNG', 'Slide14.PNG', 'Slide15.PNG', 'Slide16.PNG'] },
+      'res-apply-imgs': { folder: 'files/03-البحوث-الإجرائية/03-تطبيق-البحث-الاستقصائي', files: ['0536931d-a31b-4f65-8c5a-fbaa6c9f8f0f-0.jpeg', '3521e6dd-944e-4883-83b9-6eb99abd4b66-2.png', '36d50bb3-ae17-4965-895d-9903f984c3ca-1.png', 'c7dcabcc-2277-4a65-9a71-a7bda9b5737b-4.jpeg', 'c8bf5aa6-3dd6-4474-8665-1dc82b031643-5.jpeg', 'd4711246-6e19-4a65-a8b3-69285dac870a-3.png'] },
+      'refl-diff': { folder: 'files/03-البحوث-الإجرائية/04-التأملات-الذاتية/01-تحدي-الفروق-الفردية', files: [] },
+      'refl-tech': { folder: 'files/03-البحوث-الإجرائية/04-التأملات-الذاتية/02-دمج-التكنولوجيا', files: [] },
+      'refl-class': { folder: 'files/03-البحوث-الإجرائية/04-التأملات-الذاتية/03-إدارة-الصف', files: [] },
+      'refl-start': { folder: 'files/03-البحوث-الإجرائية/04-التأملات-الذاتية/04-بداية-العام', files: [] },
+      'comm-fair': { folder: 'files/11-المسؤولية-المجتمعية-والتقدير/01-النشاطات-والمبادرات-اللامنهجية/01-المعرض-العلمي-السنوي', files: [] },
+      'comm-club': { folder: 'files/11-المسؤولية-المجتمعية-والتقدير/01-النشاطات-والمبادرات-اللامنهجية/02-نادي-العلوم', files: [] },
+      'comm-workshops': { folder: 'files/11-المسؤولية-المجتمعية-والتقدير/01-النشاطات-والمبادرات-اللامنهجية/03-ورش-تطوير-الزملاء', files: [] },
+      'comm-recycling': { folder: 'files/11-المسؤولية-المجتمعية-والتقدير/01-النشاطات-والمبادرات-اللامنهجية/04-مبادرة-التدوير-البيئي', files: [] },
+      'comm-contests': { folder: 'files/11-المسؤولية-المجتمعية-والتقدير/01-النشاطات-والمبادرات-اللامنهجية/05-مسابقات-العلوم', files: [] },
+      'comm-health': { folder: 'files/11-المسؤولية-المجتمعية-والتقدير/01-النشاطات-والمبادرات-اللامنهجية/06-التوعية-الصحية', files: [] },
+      'award-1': { folder: 'files/11-المسؤولية-المجتمعية-والتقدير/02-شهادات-الشكر-والثناء/01-شكر-وتقدير-من-مدير-المدرسة', files: [] },
+      'award-2': { folder: 'files/11-المسؤولية-المجتمعية-والتقدير/02-شهادات-الشكر-والثناء/02-خطاب-شكر-من-المشرف-التربوي', files: [] },
+      'award-3': { folder: 'files/11-المسؤولية-المجتمعية-والتقدير/02-شهادات-الشكر-والثناء/03-شهادة-تقدير-ورشة-تدريبية', files: [] },
+      'award-4': { folder: 'files/11-المسؤولية-المجتمعية-والتقدير/02-شهادات-الشكر-والثناء/04-درع-تكريم-جمعية-المجتمع', files: [] },
+      'award-5': { folder: 'files/11-المسؤولية-المجتمعية-والتقدير/02-شهادات-الشكر-والثناء/05-شهادة-شكر-وتقدير', files: ['شهادة تقدير المعلم الرئيس.pdf', 'شهادة شكر وتقدير همام.pdf'] },
+      'social-email': 'mailto:mraed1987@gmail.com',
+      'social-linkedin': '',
+      'social-twitter': '',
+      'social-youtube': '',
+      'social-telegram': 'https://t.me/+962791812682',
+      'lab-images': { folder: 'files/08-استراتيجيات-التدريس-والابتكار-الرقمي/02-الابتكار-الرقمي/01-حوسبة-سجلات-المختبر', files: ['1.bmp', '2.bmp', '3.bmp'] },
+      'tracking-pdf': 'files/08-استراتيجيات-التدريس-والابتكار-الرقمي/02-الابتكار-الرقمي/02-أنظمة-إدارة-بيانات-الطلاب/01-سجل-متابعة-الطلبة-الرقمي/أداة تقييم اوراق العمل.pdf',
+      'attendance-pdf': 'files/08-استراتيجيات-التدريس-والابتكار-الرقمي/02-الابتكار-الرقمي/02-أنظمة-إدارة-بيانات-الطلاب/02-دفتر-الحضور-والغياب-الرقمي/سجل الاختبارات الشهرية.pdf'
+    };
+
+    const prepStore = {
+      'prep-9-2025': {
+        folder: 'files/03-نماذج-التحضير/01-الصف-التاسع/2025-2026',
+        title: 'الصف التاسع - 2025-2026',
+        semesters: [
+          { name: 'الفصل الأول', folder: 'الفصل-الأول', units: [{ name: 'الوحدة الأولى', folder: 'الوحدة-الأولى', files: [] }, { name: 'الوحدة الثانية', folder: 'الوحدة-الثانية', files: [] }, { name: 'الوحدة الثالثة', folder: 'الوحدة-الثالثة', files: [] }] },
+          { name: 'الفصل الثاني', folder: 'الفصل-الثاني', units: [
+            { name: 'الوحدة الأولى', folder: 'الوحدة-الأولى', files: ['التاسع - ف2 - الوحدة الأولى.pdf'] },
+            { name: 'الوحدة الثانية', folder: 'الوحدة-الثانية', files: ['التاسع - ف2 - الوحدة الثانية.pdf'] }
+          ]}
+        ]
+      },
+      'prep-9-2026': { folder: 'files/03-نماذج-التحضير/01-الصف-التاسع/2026-2027', title: 'الصف التاسع - 2026-2027', semesters: [
+        { name: 'الفصل الأول', folder: 'الفصل-الأول', units: [{ name: 'الوحدة الأولى', folder: 'الوحدة-الأولى', files: [] }] }
+      ] },
+      'prep-10-2025': { folder: 'files/03-نماذج-التحضير/02-الصف-العاشر/2025-2026', title: 'الصف العاشر - 2025-2026', semesters: [
+        { name: 'الفصل الأول', folder: 'الفصل-الأول', units: [{ name: 'الوحدة الأولى', folder: 'الوحدة-الأولى', files: [] }, { name: 'الوحدة الثانية', folder: 'الوحدة-الثانية', files: [] }, { name: 'الوحدة الثالثة', folder: 'الوحدة-الثالثة', files: [] }] },
+        { name: 'الفصل الثاني', folder: 'الفصل-الثاني', units: [{ name: 'الوحدة الأولى', folder: 'الوحدة-الأولى', files: [] }, { name: 'الوحدة الثانية', folder: 'الوحدة-الثانية', files: [] }, { name: 'الوحدة الثالثة', folder: 'الوحدة-الثالثة', files: [] }] }
+      ] },
+      'prep-11-2025': { folder: 'files/03-نماذج-التحضير/03-الأول-ثانوي/2025-2026', title: 'الأول ثانوي - 2025-2026', semesters: [
+        { name: 'الفصل الأول', folder: 'الفصل-الأول', units: [{ name: 'الوحدة الأولى', folder: 'الوحدة-الأولى', files: [] }, { name: 'الوحدة الثانية', folder: 'الوحدة-الثانية', files: [] }, { name: 'الوحدة الثالثة', folder: 'الوحدة-الثالثة', files: [] }] },
+        { name: 'الفصل الثاني', folder: 'الفصل-الثاني', units: [{ name: 'الوحدة الأولى', folder: 'الوحدة-الأولى', files: [] }, { name: 'الوحدة الثانية', folder: 'الوحدة-الثانية', files: [] }, { name: 'الوحدة الثالثة', folder: 'الوحدة-الثالثة', files: [] }] }
+      ] },
+      'prep-12-2025': { folder: 'files/03-نماذج-التحضير/04-الثاني-ثانوي/2025-2026', title: 'الثاني ثانوي - 2025-2026', semesters: [
+        { name: 'الفصل الأول', folder: 'الفصل-الأول', units: [{ name: 'الوحدة الأولى', folder: 'الوحدة-الأولى', files: [] }, { name: 'الوحدة الثانية', folder: 'الوحدة-الثانية', files: [] }, { name: 'الوحدة الثالثة', folder: 'الوحدة-الثالثة', files: [] }] },
+        { name: 'الفصل الثاني', folder: 'الفصل-الثاني', units: [{ name: 'الوحدة الأولى', folder: 'الوحدة-الأولى', files: [] }, { name: 'الوحدة الثانية', folder: 'الوحدة-الثانية', files: [] }, { name: 'الوحدة الثالثة', folder: 'الوحدة-الثالثة', files: [] }] }
+      ] }
+    };
+
+    const materialsStore = {
+      'materials-worksheets': { folder: 'files/04-المواد-التعليمية/01-أوراق-عمل', title: 'أوراق عمل تفاعلية' },
+      'materials-summaries': { folder: 'files/04-المواد-التعليمية/02-ملخصات', title: 'ملخصات شاملة' },
+      'materials-pptx': { folder: 'files/04-المواد-التعليمية/03-عروض-بوربوينت', title: 'عروض بوربوينت' },
+      'materials-videos': { folder: 'files/04-المواد-التعليمية/04-فيديوهات-تعليمية', title: 'فيديوهات تعليمية' }
+    };
+
+    const assessStore = {
+      'assess-bloom': { folder: 'files/09-نماذج-الاختبارات-وأدوات-التقويم/01-اختبارات-بلوم', title: 'اختبارات وفق مستويات بلوم' },
+      'assess-rubrics': { folder: 'files/09-نماذج-الاختبارات-وأدوات-التقويم/02-سلالم-التقدير', title: 'سلالم التقدير اللفظية (Rubrics)' },
+      'assess-checklist': { folder: 'files/09-نماذج-الاختبارات-وأدوات-التقويم/03-قوائم-الشطب', title: 'قوائم الشطب (Checklists)' },
+      'data-analysis': { folder: 'files/10-تحليل-البيانات-والخطط-العلاجية/01-تحليل-نتائج-الاختبارات', title: 'تحليل نتائج الاختبارات' },
+      'data-remedial': { folder: 'files/10-تحليل-البيانات-والخطط-العلاجية/02-الخطط-العلاجية', title: 'الخطط العلاجية' },
+      'data-reports': { folder: 'files/10-تحليل-البيانات-والخطط-العلاجية/03-تقارير-الأداء', title: 'تقارير الأداء' },
+      'data-individual': { folder: 'files/10-تحليل-البيانات-والخطط-العلاجية/04-خطط-المتابعة-الفردية', title: 'خطط المتابعة الفردية' }
+    };
+
+    const strategiesStore = {
+      'strategy-teaching': { folder: 'files/08-استراتيجيات-التدريس-والابتكار-الرقمي/01-استراتيجيات-التدريس-المستخدمة', title: 'استراتيجيات التدريس المستخدمة' },
+      'strategy-digital': {
+        folder: 'files/08-استراتيجيات-التدريس-والابتكار-الرقمي/02-الابتكار-الرقمي',
+        title: 'الابتكار الرقمي',
+        subProjects: [
+          { id: 'sub-lab', name: 'حوسبة سجلات المختبر', desc: 'تصميم نظام رقمي لحوسبة سجلات المختبر المدرسي يشمل توثيق التجارب، إدارة المواد، ومتابعة صيانة الأجهزة باستخدام Excel وجداول البيانات.', tag: 'نظام رقمي', folder: 'files/08-استراتيجيات-التدريس-والابتكار-الرقمي/02-الابتكار-الرقمي/01-حوسبة-سجلات-المختبر' },
+           { id: 'sub-data', name: 'أنظمة إدارة بيانات الطلاب', desc: 'مجموعة من الأنظمة الرقمية المتكاملة: سجل متابعة الطلبة الرقمي لمتابعة أدائهم وتحصيلهم، دفتر الحضور والغياب الرقمي لتسجيل ومتابعة الغياب بإحصائيات تلقائية، وأدوات برمجية تفاعلية باستخدام Excel و Google Sheets لرصد وتحليل نتائج الطلاب آلياً.', tag: 'أنظمة متكاملة', items: [{ name: 'سجل متابعة الطلبة الرقمي', fileKey: 'tracking-pdf' }, { name: 'دفتر الحضور والغياب الرقمي', fileKey: 'attendance-pdf' }] },
+           { id: 'sub-ai', name: 'تطبيقات الذكاء الاصطناعي', desc: 'توظيف أدوات AI مثل ChatGPT في تصميم أسئلة تقويمية، خطط دراسية، وأنشطة تعليمية مخصصة.', tag: 'AI في التعليم', folder: 'files/08-استراتيجيات-التدريس-والابتكار-الرقمي/02-الابتكار-الرقمي/03-تطبيقات-الذكاء-الاصطناعي' },
+          { id: 'sub-sim', name: 'المحاكاة والواقع المعزز', desc: 'استخدام منصات المحاكاة العلمية (PhET) والواقع المعزز لشرح المفاهيم المجردة.', tag: 'محاكاة', folder: 'files/08-استراتيجيات-التدريس-والابتكار-الرقمي/02-الابتكار-الرقمي/04-المحاكاة-والواقع-المعزز' },
+          { id: 'sub-quiz', name: 'التقويم الرقمي التفاعلي', desc: 'تصميم اختبارات إلكترونية باستخدام Google Forms و Quizizz مع تغذية راجعة فورية.', tag: 'تقويم رقمي', folder: 'files/08-استراتيجيات-التدريس-والابتكار-الرقمي/02-الابتكار-الرقمي/05-التقويم-الرقمي-التفاعلي' }
+        ]
+      }
+    };
+
+    const gradeStructure = [
+      { id: '01-الصف-التاسع', name: 'الصف التاسع', years: ['2025-2026', '2026-2027'] },
+      { id: '02-الصف-العاشر', name: 'الصف العاشر', years: ['2025-2026'] },
+      { id: '03-الأول-ثانوي', name: 'الأول ثانوي', years: ['2025-2026'] },
+      { id: '04-الثاني-ثانوي', name: 'الثاني ثانوي', years: ['2025-2026'] }
+    ];
+    const semesterUnits = [
+      { name: 'الفصل الأول', folder: 'الفصل-الأول', units: ['الوحدة-الأولى', 'الوحدة-الثانية', 'الوحدة-الثالثة'] },
+      { name: 'الفصل الثاني', folder: 'الفصل-الثاني', units: ['الوحدة-الأولى', 'الوحدة-الثانية', 'الوحدة-الثالثة'] }
+    ];
+
+    let galleryImages = [];
+    let galleryIndex = 0;
+
+    function openFile(el) {
+      const key = el.getAttribute('data-file-key');
+      if (!key) return false;
+      const entry = filePaths[key];
+      if (!entry) {
+        alert('سيتم تفعيل الرابط عند رفع الموقع على GitHub');
+        return false;
+      }
+
+      // Handle folder-based structure
+      if (typeof entry === 'object' && entry.folder && Array.isArray(entry.files)) {
+        if (entry.files.length === 0) return false;
+        galleryImages = entry.files.map(function(f) { return entry.folder + '/' + f; });
+        galleryIndex = 0;
+        showGalleryImage();
+        return false;
+      }
+
+      // Handle array of full paths (legacy)
+      if (Array.isArray(entry)) {
+        if (entry.length === 0) return false;
+        galleryImages = entry;
+        galleryIndex = 0;
+        showGalleryImage();
+        return false;
+      }
+
+      // Single file
+      if (entry.match(/^mailto:/i)) {
+        window.location.href = entry;
+      } else if (entry.match(/^https?:\/\//i)) {
+        window.open(entry, '_blank');
+      } else if (entry.match(/\.(jpe?g|png|gif|webp|svg)$/i)) {
+        galleryImages = [entry];
+        galleryIndex = 0;
+        showGalleryImage();
+      } else {
+        var a = document.createElement('a');
+        a.href = entry;
+        a.target = '_blank';
+        a.rel = 'noopener';
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+      }
+      return false;
+    }
+
+    function showPrepModal(key) {
+      var data = prepStore[key];
+      if (!data) return;
+      var html = '<div class="prep-modal-overlay" onclick="closePrepModal()"><div class="prep-modal" onclick="event.stopPropagation()">';
+      html += '<button class="prep-close" onclick="closePrepModal()">x</button>';
+      html += '<h3 style="margin:0 0 16px;font-size:20px;">' + data.title + '</h3>';
+      
+      if (data.semesters.length === 0) {
+        html += '<p style="color:#999;text-align:center;padding:20px;">لا توجد ملفات بعد</p>';
+      } else {
+        for (var s = 0; s < data.semesters.length; s++) {
+        var sem = data.semesters[s];
+        html += '<div class="prep-semester"><h4>' + sem.name + '</h4>';
+        
+        if (sem.units) {
+          for (var u = 0; u < sem.units.length; u++) {
+            var unit = sem.units[u];
+            if (typeof unit === 'string') {
+              html += '<div class="prep-unit empty" style="padding:8px 12px;background:#f5f5f5;border-radius:6px;margin:4px 0;color:#999;">';
+              html += unit + ' <span style="font-size:12px;">(لا توجد ملفات بعد)</span></div>';
+            } else {
+              html += '<div class="prep-unit"><span class="prep-unit-name">' + unit.name + '</span>';
+              for (var f = 0; f < unit.files.length; f++) {
+                var filePath = data.folder + '/' + sem.folder + '/' + unit.folder + '/' + unit.files[f];
+                var isPdf = unit.files[f].match(/\.pdf$/i);
+                var icon = isPdf ? 'fa-file-pdf' : 'fa-file-image';
+                html += '<a href="' + filePath + '" target="_blank" class="prep-file" download=""><i class="fas ' + icon + '"></i> ' + unit.files[f] + '</a>';
+              }
+              html += '</div>';
+            }
+          }
+        }
+        html += '</div>';
+        }
+      }
+      
+      html += '</div></div>';
+      var div = document.createElement('div');
+      div.id = 'prepModal';
+      div.innerHTML = html;
+      document.body.appendChild(div);
+    }
+
+    function closePrepModal() {
+      var el = document.getElementById('prepModal');
+      if (el) el.remove();
+    }
+
+    function showMaterialsModal(key) {
+      var data = materialsStore[key];
+      if (!data) return;
+      var html = '<div class="prep-modal-overlay" onclick="closePrepModal()"><div class="prep-modal" onclick="event.stopPropagation()">';
+      html += '<button class="prep-close" onclick="closePrepModal()">x</button>';
+      html += '<h3 style="margin:0 0 16px;font-size:20px;">' + data.title + '</h3>';
+      html += '<p style="color:var(--text-light);margin-bottom:12px;">اختر الصف:</p><div style="display:flex;flex-wrap:wrap;gap:8px;">';
+      for (var g = 0; g < gradeStructure.length; g++) {
+        (function(grade) {
+          html += '<span class="card-tag clickable" onclick="showMaterialGrade(\'' + key + '\',\'' + grade.id + '\',\'' + grade.name + '\')">' + grade.name + '</span>';
+        })(gradeStructure[g]);
+      }
+      html += '</div></div></div>';
+      var div = document.createElement('div');
+      div.id = 'prepModal';
+      div.innerHTML = html;
+      document.body.appendChild(div);
+    }
+
+    function showMaterialGrade(matKey, gradeId, gradeName) {
+      closePrepModal();
+      var data = materialsStore[matKey];
+      if (!data) return;
+      var grade = null;
+      for (var g = 0; g < gradeStructure.length; g++) {
+        if (gradeStructure[g].id === gradeId) { grade = gradeStructure[g]; break; }
+      }
+      if (!grade) return;
+      var html = '<div class="prep-modal-overlay" onclick="closePrepModal()"><div class="prep-modal" onclick="event.stopPropagation()">';
+      html += '<button class="prep-close" onclick="closePrepModal()">x</button>';
+      html += '<h3 style="margin:0 0 16px;font-size:20px;">' + data.title + ' - ' + gradeName + '</h3>';
+      html += '<p style="color:var(--text-light);margin-bottom:12px;">اختر السنة:</p><div style="display:flex;flex-wrap:wrap;gap:8px;">';
+      for (var y = 0; y < grade.years.length; y++) {
+        (function(year) {
+          html += '<span class="card-tag clickable" onclick="showMaterialYear(\'' + matKey + '\',\'' + gradeId + '\',\'' + year + '\')">' + year + '</span>';
+        })(grade.years[y]);
+      }
+      html += '</div></div></div>';
+      var div = document.createElement('div');
+      div.id = 'prepModal';
+      div.innerHTML = html;
+      document.body.appendChild(div);
+    }
+
+    function showMaterialYear(matKey, gradeId, year) {
+      closePrepModal();
+      var data = materialsStore[matKey];
+      if (!data) return;
+      var html = '<div class="prep-modal-overlay" onclick="closePrepModal()"><div class="prep-modal" onclick="event.stopPropagation()">';
+      html += '<button class="prep-close" onclick="closePrepModal()">x</button>';
+      html += '<h3 style="margin:0 0 16px;font-size:20px;">' + data.title + ' - ' + year + '</h3>';
+      for (var s = 0; s < semesterUnits.length; s++) {
+        var sem = semesterUnits[s];
+        html += '<div class="prep-semester"><h4>' + sem.name + '</h4>';
+        for (var u = 0; u < sem.units.length; u++) {
+          var unitName = sem.units[u];
+          var unitFolder = data.folder + '/' + gradeId + '/' + year + '/' + sem.folder + '/' + unitName;
+          html += '<div class="prep-unit" style="margin:4px 0;padding:6px 10px;background:#f9f9f9;border-radius:6px;border-right:3px solid var(--primary);">';
+          html += '<span class="prep-unit-name" style="font-size:13px;">' + unitName.replace(/-/g, ' ') + '</span>';
+          html += '<span style="display:block;font-size:11px;color:#999;">(ملفات حسب الإضافة)</span>';
+          html += '</div>';
+        }
+        html += '</div>';
+      }
+      html += '</div></div>';
+      var div = document.createElement('div');
+      div.id = 'prepModal';
+      div.innerHTML = html;
+      document.body.appendChild(div);
+    }
+
+    function showAssessModal(key) {
+      var data = assessStore[key];
+      if (!data) return;
+      var html = '<div class="prep-modal-overlay" onclick="closePrepModal()"><div class="prep-modal" onclick="event.stopPropagation()">';
+      html += '<button class="prep-close" onclick="closePrepModal()">x</button>';
+      html += '<h3 style="margin:0 0 16px;font-size:20px;">' + data.title + '</h3>';
+      html += '<p style="color:var(--text-light);margin-bottom:12px;">اختر الصف:</p><div style="display:flex;flex-wrap:wrap;gap:8px;">';
+      for (var g = 0; g < gradeStructure.length; g++) {
+        (function(grade) {
+          html += '<span class="card-tag clickable" onclick="showAssessGrade(\'' + key + '\',\'' + grade.id + '\',\'' + grade.name + '\')">' + grade.name + '</span>';
+        })(gradeStructure[g]);
+      }
+      html += '</div></div></div>';
+      var div = document.createElement('div');
+      div.id = 'prepModal';
+      div.innerHTML = html;
+      document.body.appendChild(div);
+    }
+
+    function showAssessGrade(matKey, gradeId, gradeName) {
+      closePrepModal();
+      var data = assessStore[matKey];
+      if (!data) return;
+      var grade = null;
+      for (var g = 0; g < gradeStructure.length; g++) {
+        if (gradeStructure[g].id === gradeId) { grade = gradeStructure[g]; break; }
+      }
+      if (!grade) return;
+      var html = '<div class="prep-modal-overlay" onclick="closePrepModal()"><div class="prep-modal" onclick="event.stopPropagation()">';
+      html += '<button class="prep-close" onclick="closePrepModal()">x</button>';
+      html += '<h3 style="margin:0 0 16px;font-size:20px;">' + data.title + ' - ' + gradeName + '</h3>';
+      html += '<p style="color:var(--text-light);margin-bottom:12px;">اختر السنة:</p><div style="display:flex;flex-wrap:wrap;gap:8px;">';
+      for (var y = 0; y < grade.years.length; y++) {
+        (function(year) {
+          html += '<span class="card-tag clickable" onclick="showAssessYear(\'' + matKey + '\',\'' + gradeId + '\',\'' + year + '\')">' + year + '</span>';
+        })(grade.years[y]);
+      }
+      html += '</div></div></div>';
+      var div = document.createElement('div');
+      div.id = 'prepModal';
+      div.innerHTML = html;
+      document.body.appendChild(div);
+    }
+
+    function showAssessYear(matKey, gradeId, year) {
+      closePrepModal();
+      var data = assessStore[matKey];
+      if (!data) return;
+      var html = '<div class="prep-modal-overlay" onclick="closePrepModal()"><div class="prep-modal" onclick="event.stopPropagation()">';
+      html += '<button class="prep-close" onclick="closePrepModal()">x</button>';
+      html += '<h3 style="margin:0 0 16px;font-size:20px;">' + data.title + ' - ' + year + '</h3>';
+      for (var s = 0; s < semesterUnits.length; s++) {
+        var sem = semesterUnits[s];
+        html += '<div class="prep-semester"><h4>' + sem.name + '</h4>';
+        for (var u = 0; u < sem.units.length; u++) {
+          var unitName = sem.units[u];
+          var unitFolder = data.folder + '/' + gradeId + '/' + year + '/' + sem.folder + '/' + unitName;
+          html += '<div class="prep-unit" style="margin:4px 0;padding:6px 10px;background:#f9f9f9;border-radius:6px;border-right:3px solid var(--primary);">';
+          html += '<span class="prep-unit-name" style="font-size:13px;">' + unitName.replace(/-/g, ' ') + '</span>';
+          html += '<span style="display:block;font-size:11px;color:#999;">(ملفات حسب الإضافة)</span>';
+          html += '</div>';
+        }
+        html += '</div>';
+      }
+      html += '</div></div>';
+      var div = document.createElement('div');
+      div.id = 'prepModal';
+      div.innerHTML = html;
+      document.body.appendChild(div);
+    }
+
+    function showSimpleFolderModal(key) {
+      var data = strategiesStore[key];
+      if (!data) return;
+      var html = '<div class="prep-modal-overlay" onclick="closePrepModal()"><div class="prep-modal" onclick="event.stopPropagation()">';
+      html += '<button class="prep-close" onclick="closePrepModal()">x</button>';
+      html += '<h3 style="margin:0 0 16px;font-size:20px;">' + data.title + '</h3>';
+      if (data.subProjects) {
+        html += '<p style="color:var(--text-light);margin-bottom:12px;">اختر المشروع:</p>';
+        html += '<div style="display:flex;flex-wrap:wrap;gap:8px;">';
+        for (var p = 0; p < data.subProjects.length; p++) {
+          (function(proj) {
+            html += '<span class="card-tag clickable" onclick="showSubProject(\'' + key + '\',\'' + proj.id + '\')">' + proj.name + '</span>';
+          })(data.subProjects[p]);
+        }
+        html += '</div>';
+      } else {
+        html += '<div style="background:#f8f9fa;border-radius:8px;padding:24px;text-align:center;color:#999;"><i class="fas fa-folder-open" style="font-size:40px;display:block;margin-bottom:8px;"></i> لم يتم إضافة ملفات بعد</div>';
+      }
+      html += '</div></div>';
+      var div = document.createElement('div');
+      div.id = 'prepModal';
+      div.innerHTML = html;
+      document.body.appendChild(div);
+    }
+
+    function showSubProject(key, projId) {
+      closePrepModal();
+      var data = strategiesStore[key];
+      if (!data || !data.subProjects) return;
+      var proj = null;
+      for (var p = 0; p < data.subProjects.length; p++) {
+        if (data.subProjects[p].id === projId) { proj = data.subProjects[p]; break; }
+      }
+      if (!proj) return;
+      var html = '<div class="prep-modal-overlay" onclick="closePrepModal()"><div class="prep-modal" onclick="event.stopPropagation()">';
+      html += '<button class="prep-close" onclick="closePrepModal()">x</button>';
+      html += '<h3 style="margin:0 0 16px;font-size:20px;">' + proj.name + '</h3>';
+      if (proj.desc) {
+        html += '<p style="color:var(--text-light);margin-bottom:12px;line-height:1.6;">' + proj.desc + '</p>';
+        if (proj.tag) html += '<span class="card-tag" style="margin-bottom:16px;display:inline-block;">' + proj.tag + '</span>';
+      }
+      if (proj.items) {
+        html += '<div style="display:flex;flex-wrap:wrap;gap:8px;">';
+        for (var i = 0; i < proj.items.length; i++) {
+          (function(item) {
+            html += '<div onclick="openFileByKey(\'' + item.fileKey + '\');return false;" style="cursor:pointer;background:#f0f4ff;border-radius:8px;padding:10px 16px;display:flex;align-items:center;gap:8px;width:100%;border:1px solid #dbeafe;"><i class="fas fa-file-pdf" style="color:var(--primary);"></i><span>' + item.name + '</span></div>';
+          })(proj.items[i]);
+        }
+        html += '</div>';
+      } else {
+        html += '<div style="background:#f8f9fa;border-radius:8px;padding:24px;text-align:center;color:#999;margin-top:12px;"><i class="fas fa-folder-open" style="font-size:40px;display:block;margin-bottom:8px;"></i> لم يتم إضافة ملفات بعد</div>';
+      }
+      html += '</div></div>';
+      var div = document.createElement('div');
+      div.id = 'prepModal';
+      div.innerHTML = html;
+      document.body.appendChild(div);
+    }
+
+    function openFileByKey(fileKey) {
+      var el = document.createElement('div');
+      el.setAttribute('data-file-key', fileKey);
+      openFile(el);
+    }
+
+    function showGalleryImage() {
+      if (galleryImages.length === 0) return;
+      const img = document.getElementById('lightboxImg');
+      const iframe = document.getElementById('lightboxIframe');
+      var file = galleryImages[galleryIndex];
+      if (file.match(/\.(jpe?g|png|gif|webp|svg)$/i)) {
+        img.style.display = 'block';
+        iframe.style.display = 'none';
+        img.src = file;
+      } else {
+        iframe.style.display = 'block';
+        img.style.display = 'none';
+        iframe.src = file;
+      }
+      document.getElementById('lightbox').style.display = 'flex';
+      updateGalleryNav();
+    }
+
+    function updateGalleryNav() {
+      const nav = document.getElementById('lightboxNav');
+      if (nav) {
+        if (galleryImages.length > 1) {
+          nav.style.display = 'flex';
+          nav.querySelector('.lb-counter').textContent = (galleryIndex + 1) + ' / ' + galleryImages.length;
+          nav.querySelector('.lb-prev').style.display = galleryIndex > 0 ? 'inline-block' : 'none';
+          nav.querySelector('.lb-next').style.display = galleryIndex < galleryImages.length - 1 ? 'inline-block' : 'none';
+        } else {
+          nav.style.display = 'none';
+        }
+      }
+    }
+
+    function prevImage() { if (galleryIndex > 0) { galleryIndex--; showGalleryImage(); } }
+    function nextImage() { if (galleryIndex < galleryImages.length - 1) { galleryIndex++; showGalleryImage(); } }
+
+    function showLightbox(url, isIframe) {
+      // Legacy - use galleryImages approach instead
+      galleryImages = typeof url === 'string' ? [url] : [];
+      galleryIndex = 0;
+      showGalleryImage();
+    }
+
+    function closeLightbox() {
+      const lb = document.getElementById('lightbox');
+      const iframe = document.getElementById('lightboxIframe');
+      const img = document.getElementById('lightboxImg');
+      lb.style.display = 'none';
+      iframe.src = '';
+      img.src = '';
+      galleryImages = [];
+      galleryIndex = 0;
+    }
+
+    // Print CV as PDF
+    function printCV() {
+      const cvContainer = document.querySelector('#about-cv .cv-container');
+      if (!cvContainer) return;
+      const styles = document.querySelectorAll('style, link[rel=stylesheet]');
+      let styleHTML = '';
+      styles.forEach(s => styleHTML += s.outerHTML);
+      const printWindow = window.open('', '_blank', 'width=900,height=700');
+      printWindow.document.write('<!DOCTYPE html><html dir="rtl"><head><meta charset="UTF-8">' + styleHTML + '</head><body style="background:#fff;padding:0;margin:0;font-family: Cairo, sans-serif;">');
+      printWindow.document.write(cvContainer.outerHTML);
+      printWindow.document.write('</body></html>');
+      printWindow.document.close();
+      printWindow.focus();
+      setTimeout(() => { printWindow.print(); }, 500);
+    }
+
+    // Navbar scroll effect
+    const navbar = document.getElementById('navbar');
+    const backTop = document.getElementById('backTop');
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 80) { navbar.classList.add('scrolled'); backTop.classList.add('visible'); }
+      else { navbar.classList.remove('scrolled'); backTop.classList.remove('visible'); }
+    });
+
+    // Mobile nav toggle
+    const navToggle = document.getElementById('navToggle');
+    const navMenu = document.getElementById('navMenu');
+    navToggle.addEventListener('click', () => {
+      navMenu.classList.toggle('open');
+      navToggle.innerHTML = navMenu.classList.contains('open') ? '<i class="fas fa-times"></i>' : '<i class="fas fa-bars"></i>';
+    });
+
+    document.querySelectorAll('.nav-menu a').forEach(a => {
+      a.addEventListener('click', () => {
+        navMenu.classList.remove('open');
+        navToggle.innerHTML = '<i class="fas fa-bars"></i>';
+      });
+    });
+
+    const sections = ['home','about','planning','pedagogy','assessment','research','community'];
+    const navLinks = document.querySelectorAll('.nav-menu a');
+    window.addEventListener('scroll', () => {
+      let current = 'home';
+      sections.forEach(id => {
+        const el = document.getElementById(id);
+        if (el && window.scrollY >= el.offsetTop - 200) current = id;
+      });
+      navLinks.forEach(a => {
+        a.classList.toggle('active', a.getAttribute('href') === '#' + current);
+      });
+    });
+
+    // Sub-navigation tabs
+    function switchTab(link) {
+      var targetId = link.getAttribute('data-target');
+      if (!targetId) return;
+      
+      var nav = link.closest('.sub-nav');
+      if (!nav) return;
+      
+      nav.querySelectorAll('a').forEach(function(l) { l.classList.remove('active-sub'); });
+      link.classList.add('active-sub');
+      
+      var section = link.closest('.section') || link.closest('section');
+      if (section) {
+        section.querySelectorAll('.sub-page').forEach(function(sp) { sp.classList.remove('active'); });
+        var target = document.getElementById(targetId);
+        if (target) target.classList.add('active');
+      }
+    }
+  </script>
+</body>
+</html>
