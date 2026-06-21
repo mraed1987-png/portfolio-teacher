@@ -1763,9 +1763,7 @@
               html += '<div class="prep-unit"><span class="prep-unit-name">' + unit.name + '</span>';
               for (var f = 0; f < unit.files.length; f++) {
                 var filePath = data.folder + '/' + sem.folder + '/' + unit.folder + '/' + unit.files[f];
-                var isPdf = unit.files[f].match(/\.pdf$/i);
-                var icon = isPdf ? 'fa-file-pdf' : 'fa-file-image';
-                html += '<a href="' + filePath + '" target="_blank" class="prep-file"><i class="fas ' + icon + '"></i> ' + unit.files[f] + '</a>';
+                html += '<a href="javascript:void(0)" onclick="window.open(\'' + filePath + '\',\'_blank\')" class="prep-file"><i class="fas fa-file-pdf"></i> ' + unit.files[f] + '</a>';
               }
               html += '</div>';
             }
