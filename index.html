@@ -1763,7 +1763,11 @@
               html += '<div class="prep-unit"><span class="prep-unit-name">' + unit.name + '</span>';
               for (var f = 0; f < unit.files.length; f++) {
                 var filePath = data.folder + '/' + sem.folder + '/' + unit.folder + '/' + unit.files[f];
-                html += '<a href="javascript:void(0)" onclick="window.open(\'' + filePath + '\',\'_blank\')" class="prep-file"><i class="fas fa-file-pdf"></i> ' + unit.files[f] + '</a>';
+                var isPdf = unit.files[f].match(/\.pdf$/i);
+                var icon = isPdf ? 'fa-file-pdf' : 'fa-file-image';
+                (function(fp) {
+                  html += '<a href="javascript:void(0)" onclick="openPrepFile(\'' + fp.replace(/'/g, "\\'") + '\')" class="prep-file"><i class="fas ' + icon + '"></i> ' + unit.files[f] + '</a>';
+                })(filePath);
               }
               html += '</div>';
             }
@@ -1783,6 +1787,13 @@
     function closePrepModal() {
       var el = document.getElementById('prepModal');
       if (el) el.remove();
+    }
+
+    function openPrepFile(filePath) {
+      galleryImages = [filePath];
+      galleryIndex = 0;
+      showGalleryImage();
+      return false;
     }
 
     function showMaterialsModal(key) {
