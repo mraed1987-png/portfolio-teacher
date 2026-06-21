@@ -1765,7 +1765,7 @@
                 var filePath = data.folder + '/' + sem.folder + '/' + unit.folder + '/' + unit.files[f];
                 var isPdf = unit.files[f].match(/\.pdf$/i);
                 var icon = isPdf ? 'fa-file-pdf' : 'fa-file-image';
-                html += '<a href="' + filePath + '" target="_blank" class="prep-file" download=""><i class="fas ' + icon + '"></i> ' + unit.files[f] + '</a>';
+                html += '<a href="' + filePath + '" target="_blank" class="prep-file"><i class="fas ' + icon + '"></i> ' + unit.files[f] + '</a>';
               }
               html += '</div>';
             }
